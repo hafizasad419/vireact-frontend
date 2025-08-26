@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Field, type FieldProps } from "formik"
-import { Eye, EyeOff } from "lucide-react"
+import { FaEye, FaEyeSlash } from "react-icons/fa"
 
 export interface PasswordFieldProps {
   /** The name/id of the field for Formik */
@@ -86,9 +86,9 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
-                  <EyeOff className="w-5 h-5" />
+                  <FaEyeSlash className="w-5 h-5" />
                 ) : (
-                  <Eye className="w-5 h-5" />
+                  <FaEye className="w-5 h-5" />
                 )}
               </button>
             </div>

@@ -28,10 +28,11 @@ function WhyChooseUsSection() {
                         gradient={false}
                         className="py-4"
                     >
-                        {whyChooseUsItems.map((item: any) => (
+                        {whyChooseUsItems.map((item: any, index: number) => (
                             <WhyChooseUsCard
                                 key={item.id}
                                 card={item}
+                                index={index}
                             />
                         ))}
                     </CustomMarquee>
