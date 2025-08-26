@@ -10,16 +10,15 @@
   font-style: normal;
 }
 
-.special-gothic-condensed-one-regular {
+/* .special-gothic-condensed-one-regular {
   font-family: "Special Gothic Condensed One", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-}
+} */
 
-.bebas-neue {
+.bebas-neue-regular {
   font-family: "Bebas Neue", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
@@ -39,6 +38,7 @@
   --color-background: #f0ebde;
   --color-dark-background: #072a27;
   --color-heading: #000000;
+  --color-light-gray: #FFFFFF80;
 
   /* Dark theme color palette */
   --color-dark-primary: #1a1a1a;
@@ -64,7 +64,7 @@
 
 
   --font-sans: "Poppins", sans-serif;
-  --font-heading: "Special Gothic Condensed One", sans-serif;
+  --font-heading: "Bebas Neue", sans-serif;
   --font-bebas-neue: "Bebas Neue", sans-serif;
   --font-roboto: "Roboto", sans-serif;
 }
@@ -85,6 +85,7 @@
   .glassmorphism {
     @apply bg-white/20 backdrop-blur-3xl;
   }
+
 }
 
 @layer base {
@@ -103,7 +104,8 @@
   h4,
   h5,
   h6 {
-    @apply font-heading text-white text-4xl md:text-5xl font-normal leading-tight;
+    @apply font-heading font-bold text-white text-4xl md:text-5xl leading-tight;
+    /* @apply text-gradient-primary; */
   }
 }
 

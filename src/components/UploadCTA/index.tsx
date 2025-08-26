@@ -8,7 +8,7 @@ interface UploadCTAInterface {
     onUploadClick?: () => void;
 }
 
-function UploadCTA({ inputButtonText = "Analyze my video", inputPlaceholder = "Drop a video link", uploadButtonText = "Upload a short", onUploadClick }: UploadCTAInterface) {
+function UploadCTA({ inputButtonText = "Analyze my video", inputPlaceholder = "Drop a video link", uploadButtonText = "Upload to analyze", onUploadClick }: UploadCTAInterface) {
     const [isUploading, setIsUploading] = useState(false);
 
     const handleUploadClick = () => {
