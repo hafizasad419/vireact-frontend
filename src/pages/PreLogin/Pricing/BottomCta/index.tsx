@@ -1,3 +1,6 @@
+import bgImage from '@/assets/footer/footer-video-poster.jpg';
+
+
 export default function BottomCta() {
     return (
         <div className="relative">
@@ -6,7 +9,7 @@ export default function BottomCta() {
                 {/* Single Background Image */}
                 <div className="relative aspect-[3/2] rounded-lg overflow-hidden shadow-2xl">
                     <img
-                        src="/src/assets/footer/footer-video-poster.jpg"
+                        src={bgImage}
                         alt="Video poster background"
                         className="w-full h-full object-cover"
                     />
@@ -28,10 +31,11 @@ export default function BottomCta() {
                 {/* Central Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center z-10">
                     <div className="text-center rounded-2xl p-8">
-                        <h2 className="uppercase text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight">
+                        <h3 className="uppercase text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight">
+                            <span></span>
                             Your videos optimized to go viral - {' '}
-                            <span className="text-green-500">FREE</span>
-                        </h2>
+                            <span className="!text-green-500">FREE</span>
+                        </h3>
                         <button className="btn-secondary !mx-auto text-lg mb-4">
                             Predict My Views Now
                         </button>

@@ -1,7 +1,7 @@
 export const faqs = [
     {
         question: "What do I get?",
-        answer: "You’ll receive a full breakdown of your video: predicted views, the mistakes holding it back, and viral-backed insights tailored to your content. From hook strength to pacing, captions, and audience fit — you’ll know exactly what to fix for better performance."
+        answer: "You'll receive a full breakdown of your video: predicted views, the mistakes holding it back, and viral-backed insights tailored to your content. From hook strength to pacing, captions, and audience fit — you'll know exactly what to fix for better performance."
     },
 
     {

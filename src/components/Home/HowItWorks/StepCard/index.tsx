@@ -10,7 +10,7 @@ function StepCard({ step }: StepCardProps) {
     const IconComponent = step.icon;
 
     return (
-        <div className="glassmorphism rounded-[24px] p-6 md:p-8 flex flex-col items-center text-center relative">
+        <div className="glassmorphism rounded-[24px] p-6 md:p-8 flex flex-col items-center text-center relative border-gradient-secondary">
             {/* Step Number Badge */}
             <div className="absolute -top-3 -left-3 w-12 h-12 rounded-full flex items-center justify-center border-4 border-white/20">
                 <span className="text-white font-bold text-lg md:text-xl">

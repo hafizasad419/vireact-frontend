@@ -3,25 +3,47 @@ import StatsBlurbs from "@/components/FeaturesPage/StatsBlurbs"
 import CreatorsAndBusinesses from "@/components/FeaturesPage/CreatorsAndBusinesses"
 import Niches from "@/components/FeaturesPage/Niches"
 import CTA from "@/components/FeaturesPage/CTA"
+import type { IconType } from "react-icons"
 
-function FeaturesPage() {
+
+interface StatsBlurb {
+    Icon: IconType;
+    achievement: string,
+    subheading: string;
+}
+
+interface FeaturesPageProps {
+    badge: string;
+    heading: string;
+    description: string;
+    ctaHeading: string;
+    blurbStats: StatsBlurb[];
+}
+
+
+function FeaturesPage({
+    badge,
+    heading,
+    description,
+    ctaHeading,
+    blurbStats
+}: FeaturesPageProps) {
     return (
-        <div>
-            <HeroSection
-                badge="Shorts Views Predictor"
-                heading="Predict Your Next Viral Video Before You Post"
-                description="Upload your video, and our AI-powered Viral View Predictor shows you how likely it is to trend — with instant feedback on hooks, captions, pacing, and audience engagement."
-                cta="Predict my video views"
-            />
-            <StatsBlurbs />
-            <CreatorsAndBusinesses />
+        <>
+            <div className="bg-[url('/gradient-bg.png')] bg-cover bg-center bg-no-repeat">
+
+                <HeroSection
+                    badge={badge}
+                    heading={heading}
+                    description={description} />
+                <StatsBlurbs blurbStats={blurbStats} />
+                <CreatorsAndBusinesses />
+            </div>
             <Niches />
-            <CTA 
-                inputButtonText="Predict my video views"
-                inputPlaceholder="Drop a link to your video"
-                ctaHeading="Predict Your Video's Viral Potential in Seconds"
+            <CTA
+                ctaHeading={ctaHeading}
             />
-        </div>
+        </>
     )
 }
 

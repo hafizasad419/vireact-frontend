@@ -53,6 +53,6 @@ export const navItems: PreLoginNavItem[] = [
         
     },
     { label: 'Pricing', href: '/pricing' },
-    { label: 'FAQ', href: '/faq' },
+    { label: 'FAQs', href: '/frequently-asked-questions' },
     { label: 'Get in touch', href: '/get-in-touch' }
 ];

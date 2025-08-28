@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionHeader } from './SectionHeader';
+import SectionHeader from '@/components/SectionHeader';
 
 interface HomeSectionProps {
     children: React.ReactNode;
@@ -97,7 +97,8 @@ function HomeSection({
 
             )}
 
-            <div className={containerClassNameFinal}>
+            <div 
+            className={containerClassNameFinal}>
                 {sectionHeader && (
                     <SectionHeader
                         badge={sectionHeader.badge}

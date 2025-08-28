@@ -7,7 +7,7 @@ interface FeatureCardProps {
 function FeatureCard({ feature }: FeatureCardProps) {
 
     return (
-        <div className="glassmorphism rounded-[24px] p-6 md:p-8 flex flex-col items-center text-center relative">
+        <div className="glassmorphism rounded-[24px] p-6 md:p-8 flex flex-col items-center text-center relative border-gradient-primary">
             {/* Feature Number Badge */}
             <div className="absolute -top-3 -left-3 w-12 h-12 rounded-full flex items-center justify-center border-4 border-white/20">
                 <span className="text-white font-bold text-lg md:text-xl">
@@ -24,13 +24,13 @@ function FeatureCard({ feature }: FeatureCardProps) {
 
             {/* Multiple Icons Container */}
             <div className="flex items-center justify-center gap-3 mb-6">
-                {feature.icons.map((IconComponent, index) => (
-                    <div
+                {feature.icons.map((iconSrc, index) => (
+                    <img 
                         key={index}
-                        className="w-12 h-12 md:w-14 md:h-14 bg-black rounded-xl flex items-center justify-center shadow-lg"
-                    >
-                        <IconComponent className="w-6 h-6 md:w-7 md:h-7 text-gray-400" />
-                    </div>
+                        src={iconSrc} 
+                        alt={`Feature icon ${index + 1}`}
+                        className="w-12 h-12 md:w-14 md:h-14 object-contain"
+                    />
                 ))}
             </div>
 

@@ -1,21 +1,19 @@
 import UploadCTA from '@/components/UploadCTA'
-import { FaStar } from 'react-icons/fa'
-
 
 interface FeaturesHeroSectionProps {
     badge?: string;
     heading?: string
     description?: string
-    cta?: string
 }
 
 
 // reusbale hero section for features page
-function HeroSection({ badge = "Your Shortcut to Viral Content", heading = "Turn Your Clips Into Viral Hits", description = "From TikToks to YouTube Shorts, Instagram Reels to Facebook videos, our AI reviews your video, predicts views and tells you exactly what changes will help it blow up.", cta = "Get My Video Reviewed" }: FeaturesHeroSectionProps) {
+function HeroSection({ badge = "Your Shortcut to Viral Content", heading = "Turn Your Clips Into Viral Hits", description = "From TikToks to YouTube Shorts, Instagram Reels to Facebook videos, our AI reviews your video, predicts views and tells you exactly what changes will help it blow up." }: FeaturesHeroSectionProps) {
     return (
-        <div className="text-center pt-12">
+        <div 
+        className="text-center pt-12">
             {/* Badge */}
-            <div className="inline-flex items-center px-6 py-2 bg-gray bg-dark-primary border border-white rounded-full mb-4">
+            <div className="inline-flex items-center px-6 py-2 bg-gray bg-dark-primary border-gradient-primary rounded-full mb-4">
                 <span className="text-sm text-white uppercase">
                     {badge}
                 </span>
@@ -32,9 +30,7 @@ function HeroSection({ badge = "Your Shortcut to Viral Content", heading = "Turn
                 {description}
             </p>
 
-            <UploadCTA
-                inputButtonText={cta}
-            />
+            <UploadCTA />
 
             {/* Rating */}
             {/* <div className="flex items-center justify-center gap-3 mb-8">

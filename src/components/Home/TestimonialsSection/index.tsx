@@ -6,7 +6,7 @@ import { testimonials } from '@/components/Home/TestimonialsSection/testimonials
 function TestimonialsSection() {
 
     return (
-        <HomeSection 
+        <HomeSection
             className="overflow-hidden"
             background="transparent"
             padding="small"
@@ -16,12 +16,9 @@ function TestimonialsSection() {
                 title: "Stop Guessing — Start Trending"
             }}
         >
-       
-
-
             {/* Main content card */}
             <div className="relative z-10 w-full max-w-7xl mx-auto py-12
-                glassmorphism shadow-lg overflow-hidden"
+                glassmorphism shadow-lg overflow-hidden])]"
             >
                 {/* Infinite Ticker Container */}
                 <div className="relative">
@@ -33,16 +30,15 @@ function TestimonialsSection() {
                         className="py-4"
                     >
                         {testimonials.map((testimonial) => (
-                            <TestimonialsCard
-                                key={testimonial.name}
-                                testimonial={testimonial}
-                            />
+                                <TestimonialsCard
+                                    testimonial={testimonial}
+                                />
                         ))}
                     </CustomMarquee>
                 </div>
             </div>
         </HomeSection>
-        );
-    }
+    );
+}
 
 export default TestimonialsSection;

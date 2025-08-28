@@ -32,19 +32,15 @@
 
 @theme {
   --gradient-primary: linear-gradient(90deg, #FF004F 0%, #FF883E 60%);
-  --color-primary-light: #f6dcb8e8;
   --color-primary: #FF004F;
   --color-secondary: #FF883E;
-  --color-background: #f0ebde;
-  --color-dark-background: #072a27;
-  --color-heading: #000000;
   --color-light-gray: #FFFFFF80;
 
   /* Dark theme color palette */
   --color-dark-primary: #1a1a1a;
   /* black */
   --color-dark-secondary: #2d2d2d;
-  --color-dark-tertiary: #404040;
+
   /* dark gray */
   --color-dark-text: #ffffff;
   /* white */
@@ -82,6 +78,16 @@
     background: var(--gradient-primary) !important;
   }
 
+
+  .border-gradient-secondary {
+    @apply border-1 border-secondary shadow-primary shadow;
+  }
+
+  .border-gradient-primary {
+    @apply border-1 border-primary shadow-secondary shadow;
+  }
+
+
   .glassmorphism {
     @apply bg-white/20 backdrop-blur-3xl;
   }
@@ -99,13 +105,22 @@
   }
 
   h1,
-  h2,
+  h2 {
+    @apply font-heading font-bold text-white text-4xl md:text-5xl leading-tight;
+
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
   h3,
   h4,
   h5,
   h6 {
     @apply font-heading font-bold text-white text-4xl md:text-5xl leading-tight;
-    /* @apply text-gradient-primary; */
+
   }
 }
 

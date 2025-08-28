@@ -1,13 +1,16 @@
 import { FaStar } from 'react-icons/fa';
+import { FaRegStar } from 'react-icons/fa';
 import HomeSection from '@/components/HomeSection';
 import UploadCTA from '@/components/UploadCTA';
+import gradientBg from "/gradient-bg.png";
 // import vireactDemoVideo from '@/assets/videos/vireact-demo.mp4'; // Commented out for potential future use
 
 function HeroSection() {
     return (
         <HomeSection
             className="min-h-screen flex items-center justify-center overflow-hidden"
-            background="transparent"
+            background="custom"
+            customBackground={`bg-[url('/gradient-bg.png')] bg-cover bg-center bg-no-repeat`}
             padding="small"
             gradient={false}
             containerClassName="pb-16"
@@ -31,7 +34,10 @@ function HeroSection() {
                     From TikToks to YouTube Shorts, Instagram Reels to Facebook videos, our AI reviews your video, predicts views and tells you exactly what changes will help it blow up.
                 </p>
 
-                <UploadCTA />
+                <UploadCTA 
+                uploadButtonText="Upload Here"
+                onUploadClick={() => {}}
+                />
 
                 {/* CTA Buttons */}
                 {/* <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
@@ -46,9 +52,34 @@ function HeroSection() {
                 {/* Rating */}
                 <div className="flex items-center justify-center gap-3 mb-8">
                     <div className="flex items-center gap-1">
-                        {[...Array(5)].map((_, i) => (
-                            <FaStar key={i} className=" text-yellow-500 w-5 h-5" />
-                        ))}
+                        {[...Array(5)].map((_, i) => {
+                            const rating = 4.9;
+                            const starValue = i + 1;
+                            
+                            if (starValue <= Math.floor(rating)) {
+                                // Full star
+                                return <FaStar key={i} className="w-5 h-5 text-yellow-500" />;
+                            } else if (starValue === Math.ceil(rating) && rating % 1 !== 0) {
+                                // Partial star - manually set fill percentage for 5th star
+                                const fillPercentage = 70; // Adjust this value to control 5th star fill (0-100)
+                                return (
+                                    <div key={i} className="relative inline-block">
+                                        {/* Empty star background */}
+                                        <FaStar className="w-5 h-5 text-gray-400" />
+                                        {/* Filled portion clipped to percentage */}
+                                        <div 
+                                            className="absolute top-0 left-0 overflow-hidden"
+                                            style={{ width: `${fillPercentage}%` }}
+                                        >
+                                            <FaStar className="w-5 h-5 text-yellow-500" />
+                                        </div>
+                                    </div>
+                                );
+                            } else {
+                                // Empty star
+                                return <FaRegStar key={i} className="w-5 h-5 text-gray-400" />;
+                            }
+                        })}
                     </div>
                     <span className="text-sm text-gray-300">4.9/5 based on 1000+ reviews</span>
                 </div>

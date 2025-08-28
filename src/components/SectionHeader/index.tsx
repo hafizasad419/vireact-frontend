@@ -8,7 +8,7 @@ interface SectionHeaderProps {
     className?: string;
 }
 
-export function SectionHeader({ badge, title, icon, className = '' }: SectionHeaderProps) {
+function SectionHeader({ badge, title, icon, className = '' }: SectionHeaderProps) {
     return (
         <div className={`text-center mb-16 ${className}`}>
             <div className="flex items-center justify-center gap-2 mb-4">
@@ -23,3 +23,5 @@ export function SectionHeader({ badge, title, icon, className = '' }: SectionHea
         </div>
     );
 }
+
+export default SectionHeader;

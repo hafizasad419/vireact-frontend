@@ -11,7 +11,7 @@ function TestimonialsCard({ testimonial }: { testimonial: TestimonialCardProps }
     const { achievement, subtitle, quote, avatar, name, role } = testimonial;
     return (
         <div className="flex-shrink-0 w-80 mx-3">
-            <div className="bg-dark-primary bg-opacity-50 backdrop-blur-lg border border-gray-700 rounded-2xl p-6 h-full min-h-80">
+                <div className="bg-dark-primary bg-opacity-50 backdrop-blur-lg border border-gradient-primary rounded-2xl p-6 h-full min-h-80">
                 <div className="text-center mb-6">
                     <div className="text-4xl md:text-5xl font-heading font-normal text-gradient-primary mb-2">
                         {achievement}

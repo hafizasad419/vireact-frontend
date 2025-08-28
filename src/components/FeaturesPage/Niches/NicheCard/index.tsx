@@ -1,30 +1,28 @@
 interface NicheCardProps {
     category: string;
-    title: string;
-    description: string;
-    placeholderClass: string;
+    alt: string;
+    thumbnail: string;
+    isFounder?: boolean;
 }
 
-function NicheCard({ category, title, description, placeholderClass }: NicheCardProps) {
+function NicheCard({ category, alt, thumbnail, isFounder = false }: NicheCardProps) {
     return (
-        <div className="mx-4 min-w-[320px]">
+        <div className="mx-4 w-[240px]">
             {/* Category Label */}
             <div className="mb-3">
-                <span className="inline-block px-3 py-1 bg-gray-800/50 text-gray-300 text-xs font-medium rounded-md">
-                    {category}
+                <span className={`inline-block text-xs font-medium border-gradient-primary glassmorphism text-white !rounded-full px-4 py-2`}>
+                    {isFounder ? 'Founder (1.1M+ @YouTube)' : category}
                 </span>
             </div>
 
             {/* Content Card */}
-            <div className="relative rounded-xl bg-white/10 border border-white/20 overflow-hidden h-64">
-                {/* Placeholder Image Div */}
-                <div className={`w-full h-full ${placeholderClass} relative`}>
-                    {/* Overlay Content */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent p-4 flex flex-col justify-end">
-                        <h3 className="text-white font-bold text-lg mb-2">{title}</h3>
-                        <p className="text-gray-300 text-sm">{description}</p>
-                    </div>
-                </div>
+            <div className={`relative rounded-xl border overflow-hidden aspect-[9/16] transition-all duration-300 bg-white/10 border-white/20 hover:scale-102`}>
+                {/* Thumbnail Image */}
+                <img 
+                    src={thumbnail} 
+                    alt={alt}
+                    className="w-full h-full object-cover"
+                />
             </div>
         </div>
     );

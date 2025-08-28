@@ -12,6 +12,8 @@ const CaptionClarity = lazy(() => import('@/pages/PreLogin/Features/CaptionClari
 const HookAnalyzer = lazy(() => import('@/pages/PreLogin/Features/HookAnalyzer'));
 const PacingRhythm = lazy(() => import('@/pages/PreLogin/Features/PacingRhythm'));
 const AudioInsight = lazy(() => import('@/pages/PreLogin/Features/AudioInsight'));
+const FAQs = lazy(() => import('@/pages/PreLogin/FAQs'));
+const GetInTouch = lazy(() => import('@/pages/PreLogin/GetInTouch'));
 
 function PublicRoutes() {
 
@@ -32,8 +34,9 @@ function PublicRoutes() {
                 <Route path='/features/pacing-rhythm' element={<PacingRhythm />} />
                 <Route path='/features/audio-insight' element={<AudioInsight />} />
 
-
-
+                {/* FAQs */}
+                <Route path='/frequently-asked-questions' element={<FAQs />} />
+                <Route path='/get-in-touch' element={<GetInTouch />} />
                 {/* <Route path='/fallback' element={<Fallback />} /> */}
             </Routes>
         </Suspense>
