@@ -5,6 +5,7 @@ interface UploadCTAInterface {
     onUploadClick?: () => void;
 }
 
+
 function UploadCTA({ uploadButtonText = "Upload Here", onUploadClick }: UploadCTAInterface) {
 
     return (
@@ -14,7 +15,7 @@ function UploadCTA({ uploadButtonText = "Upload Here", onUploadClick }: UploadCT
                 />
                 <p className="text-sm text-gray-400">or</p>
                 <button
-                    className="btn-outline px-8 py-4 text-lg border-none !rounded-full"
+                    className="btn-secondary px-8 py-4 text-lg border-none !rounded-full"
                     onClick={onUploadClick}
                 >
                     {uploadButtonText}
