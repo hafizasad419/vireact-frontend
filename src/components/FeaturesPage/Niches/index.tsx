@@ -16,7 +16,7 @@ function Niches() {
             {/* Header Section */}
             <div className="text-center mb-12">
                 <h3 className="font-bold !text-white mb-4">
-                    FROM IDEA TO VIRAL — {' '}
+                    FROM IDEA TO VIRAL, {' '}
                     <span className="text-gradient-primary">INSTANT PREDICTIONS MADE EASY</span> 
                 </h3>
             </div>

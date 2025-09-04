@@ -10,7 +10,7 @@ function FeaturesSection() {
             overflow="hidden"
             sectionHeader={{
                 badge: "Features",
-                title: "No BS — Just Features That Grow Your Channel"
+                title: "The only features you need for 100x growth"
             }}
         >
             {/* Grid layout for features */}

@@ -10,7 +10,7 @@ Extract reusable logic into custom hooks (useAuth, useFormValidation).
 
 Memoize with React.memo, useCallback, useMemo where appropriate.
 
-Avoid inline functions in JSX—pull handlers out or wrap in useCallback.
+Avoid inline functions in JSX, pull handlers out or wrap in useCallback.
 
 Favor composition (render props, children) over inheritance.
 

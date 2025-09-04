@@ -1,12 +1,12 @@
 export const faqs = [
     {
         question: "What do I get?",
-        answer: "You'll receive a full breakdown of your video: predicted views, the mistakes holding it back, and viral-backed insights tailored to your content. From hook strength to pacing, captions, and audience fit — you'll know exactly what to fix for better performance."
+        answer: "You'll receive a full breakdown of your video: predicted views, the mistakes holding it back, and viral-backed insights tailored to your content. From hook strength to pacing, captions, and audience fit, you'll know exactly what to fix for better performance."
     },
 
     {
         question: "Will this actually grow my views & subs?",
-        answer: "Yes, that's the whole point. Our users have seen 2x - 5x growth in engagement by applying the fixes we suggest. Real results, not fluff."
+        answer: "Yes, that's the whole point. Our users have seen 2x - 5x growth in engagement by applying the fixes we suggest."
     },
     {
         question: "Do I need to be a pro editor?",

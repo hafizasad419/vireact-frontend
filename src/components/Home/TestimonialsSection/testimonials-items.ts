@@ -1,22 +1,22 @@
 export const testimonials = [
     {
-      achievement: "BRUHHHH",
+      achievement: "1M+ Views",
       subtitle: "This app is actually insane.",
       name: "Jay Patel",
       role: "YouTuber, 50K subs",
-      quote: "Bruhhh… I posted one video after running it through this app and it pulled 1M views. No cap, this thing is a W tool.",
+      quote: "Works better than I thought, I posted one video after running it through this app and it pulled 1.13M views. No cap, this thing is a W tool.",
       avatar: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=100&h=100&fit=crop&crop=face"
     },
     {
-      achievement: "1.2M",
+      achievement: "1.2M+ Views",
       subtitle: "Views on a single video.",
       name: "Wendy Richmond",
       role: "CEO of Dental Marketing",
-      quote: "One of my shorts went from 12K average views to 1.2M after I applied the feedback. Literally changed how I make content.",
+      quote: "One of my shorts went from 12K average views to 1.2M after I applied the feedback. Literally changed how I make content. Just amazed at how it works.",
       avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face"
     },
     {
-      achievement: "10X faster",
+      achievement: "10X Faster",
       subtitle: "Editing process.",
       name: "Ree Hurkan",
       role: "Marketing Manager, GenX",

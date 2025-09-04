@@ -17,26 +17,25 @@ function HeroSection() {
         >
             <div className="text-center">
                 {/* Badge */}
-                <div className="inline-flex items-center px-6 py-2 bg-gray bg-dark-primary border border-white rounded-full mb-4">
-                    <span className="text-sm text-white uppercase">
-                        Your Shortcut to Viral Content
+                <div className="inline-flex items-center px-6 py-2 bg-gray bg-dark-primary border border-green-500 rounded-full mb-4">
+                    <span className="text-sm text-green-500 uppercase">
+                        #1 AI short form content tool
                     </span>
                 </div>
 
                 {/* Main Heading */}
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-normal leading-tight text-white
-                     mb-6">
-                    Turn Your Clips Into Viral Hits
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-normal leading-tight text-white mb-4">
+                    TURN YOUR CLIPS INTO HITS WITHIN SECONDS
                 </h1>
 
                 {/* Subtitle */}
-                <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8 leading-relaxed">
-                    From TikToks to YouTube Shorts, Instagram Reels to Facebook videos, our AI reviews your video, predicts views and tells you exactly what changes will help it blow up.
+                <p className="text-lg md:text-xl text-white max-w-3xl sm:max-w-md mx-auto mb-8 leading-relaxed">
+                Vireact reviews your short, predicts views, and tells you exactly what changes will make it blow up
                 </p>
 
-                <UploadCTA 
-                uploadButtonText="Upload Here"
-                onUploadClick={() => {}}
+                <UploadCTA
+                    uploadButtonText="Upload Here"
+                    onUploadClick={() => { }}
                 />
 
                 {/* CTA Buttons */}
@@ -55,7 +54,7 @@ function HeroSection() {
                         {[...Array(5)].map((_, i) => {
                             const rating = 4.9;
                             const starValue = i + 1;
-                            
+
                             if (starValue <= Math.floor(rating)) {
                                 // Full star
                                 return <FaStar key={i} className="w-5 h-5 text-yellow-500" />;
@@ -67,7 +66,7 @@ function HeroSection() {
                                         {/* Empty star background */}
                                         <FaStar className="w-5 h-5 text-gray-400" />
                                         {/* Filled portion clipped to percentage */}
-                                        <div 
+                                        <div
                                             className="absolute top-0 left-0 overflow-hidden"
                                             style={{ width: `${fillPercentage}%` }}
                                         >

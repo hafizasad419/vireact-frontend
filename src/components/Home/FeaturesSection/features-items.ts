@@ -24,20 +24,20 @@ export const features: Feature[] = [
         creativeText: "SMART SCAN",
         icons: [videoIcon, musicIcon, cameraIcon],
         title: "AI-Powered Video Analysis",
-        description: "Upload your video or paste a link—our AI reviews hooks, captions, pacing, visuals, and sounds to give you detailed feedback that boosts engagement."
+        description: "Upload your video or paste a link, our AI reviews hooks, captions, pacing, visuals, and sounds to give you detailed feedback that boosts engagement."
     },
     {
         id: 2,
         creativeText: "GROW FAST",
         icons: [chartIcon, usersIcon, awardIcon],
         title: "AI-Powered Growth Recommendations",
-        description: "No fluff. Get clear, step-by-step tips on how to improve views, likes, and subscriber growth—based on real platform trends."
+        description: "Get clear, step-by-step tips on how to improve views, likes, and subscriber growth, based on real platform trends."
     },
     {
         id: 3,
         creativeText: "ALL PLATFORMS",
         icons: [youtubeIcon, instagramIcon, facebookIcon, tiktokIcon],
         title: "Built for Every Platform",
-        description: "Whether it's Shorts, Reels, TikToks, or Facebook videos—our tool analyzes and adapts feedback for each platform's algorithm."
+        description: "Whether it's Shorts, Reels, TikToks, or Facebook videos, our tool analyzes and adapts feedback for each platform's algorithm."
     }
 ];

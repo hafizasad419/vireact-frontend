@@ -5,7 +5,7 @@ export const faqs = [
     },
     {
         question: "Can this help me go viral?",
-        answer: "We don't promise views — but we show what kills virality so you can fix it before posting."
+        answer: "We don't promise views ,  but we show what kills virality so you can fix it before posting."
     },
     {
         question: "Do I need editing skills?",
@@ -25,7 +25,7 @@ export const faqs = [
     },
     {
         question: "Does this work for any niche?",
-        answer: "Yes. Comedy, gaming, fitness, business — retention rules are universal."
+        answer: "Yes. Comedy, gaming, fitness, business ,  retention rules are universal."
     },
     {
         question: "Will it tell me exactly what to fix?",
@@ -37,7 +37,7 @@ export const faqs = [
     },
     {
         question: "Can I trust AI to judge my content?",
-        answer: "Yes — it's trained on the playbook of our Founder, Sebastian Costa (1M+ @YouTube). This is Bas's brain, AI just makes it instant."
+        answer: "Yes ,  it's trained on the playbook of our Founder, Sebastian Costa (1M+ @YouTube). This is Bas's brain, AI just makes it instant."
     },
     {
         question: "Is this like having a coach?",
@@ -45,6 +45,6 @@ export const faqs = [
     },
     {
         question: "What if my video is already good?",
-        answer: "Then you'll know it's not your edit — maybe your idea or posting strategy."
+        answer: "Then you'll know it's not your edit ,  maybe your idea or posting strategy."
     }
 ]

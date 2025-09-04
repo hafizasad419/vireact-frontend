@@ -14,12 +14,12 @@ export const whyChooseUsItems = [
     {
         icon: videTiltedIcon,
         title: "Every Platform, One Tool",
-        description: "No more guessing. Works for TikTok, Reels, Shorts, FB — your content gets tailored insights for each platform's algo."
+        description: "No more guessing. Works for TikTok, Reels, Shorts, FB ,  your content gets tailored insights for each platform's algo."
     },
     {
         icon: progressIcon,
         title: "Instant Video Audit",
-        description: "Upload a video, boom — within seconds you know if your hook is weak, pacing is slow, captions off, or audio mid."
+        description: "Upload a video, boom ,  within seconds you know if your hook is weak, pacing is slow, captions off, or audio mid."
     },
     {
         icon: heartTiltedIcon,
@@ -34,7 +34,7 @@ export const whyChooseUsItems = [
     {
         icon: folderIcon,
         title: "Audience Decoder",
-        description: "Know exactly who's watching — age, location, watch time — so you stop making vids for everyone and start making them for your fans."
+        description: "Know exactly who's watching ,  age, location, watch time ,  so you stop making vids for everyone and start making them for your fans."
     },
     {
         icon: videTiltedIcon,

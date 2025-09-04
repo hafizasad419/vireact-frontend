@@ -13,7 +13,7 @@ function TestimonialsSection() {
             overflow="hidden"
             sectionHeader={{
                 badge: "What Our Users Achieved",
-                title: "Stop Guessing — Start Trending"
+                title: "Stop Guessing, Start Trending"
             }}
         >
             {/* Main content card */}
