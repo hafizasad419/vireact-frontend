@@ -9,13 +9,30 @@ interface UserData {
     preferences?: Record<string, any>;
 }
 
-const initialState: UserData = {
-    id: "",
-    name: "",
-    email: "",
-    avatar: "",
-    preferences: {}
+// Load initial state from localStorage
+const getInitialState = (): UserData => {
+    const userStr = localStorage.getItem('auth_user');
+    if (userStr) {
+        const parsedUser = JSON.parse(userStr);
+        return {
+            id: parsedUser._id || parsedUser.id || "",
+            name: parsedUser.name || "",
+            email: parsedUser.email || "",
+            avatar: parsedUser.avatar || "",
+            preferences: parsedUser.preferences || {}
+        };
+    }
+    
+    return {
+        id: "",
+        name: "",
+        email: "",
+        avatar: "",
+        preferences: {}
+    };
 };
+
+const initialState: UserData = getInitialState();
 
 const userSlice = createSlice({
     name: "user",

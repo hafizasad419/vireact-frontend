@@ -1,8 +1,8 @@
 import PreLoginPage from "@/components/Layout/PreLoginPage";
 import FeaturesPage from "@/components/FeaturesPage";
-import { flowStats } from "@/pages/PreLogin/Features/FlowPulse/flow-stats";
+import { flowStats } from "@/pages/PreLogin/Features/PacingAndRhythm/pacing-and-rhythm-stats";
 
-function FlowPulse() {
+function PacingAndRhythm() {
     return (
         <PreLoginPage>
             <FeaturesPage
@@ -16,4 +16,4 @@ function FlowPulse() {
     )
 }
 
-export default FlowPulse
+export default PacingAndRhythm 

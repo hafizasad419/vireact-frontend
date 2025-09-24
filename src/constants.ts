@@ -11,6 +11,7 @@ export const AUTH_IS_AUTHENTICATED = "auth_is_authenticated"
 
 export const VITE_BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 export const VITE_FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
+export const VITE_GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 
 // Regex patterns for validation

@@ -1,15 +1,15 @@
 import { IoSpeedometer, IoTime, IoTrendingUp, IoCheckmarkCircle } from "react-icons/io5";
 
-export const pacingStats = [
+export const advancedAnalyticsStats = [
     {
         Icon: IoSpeedometer,
         achievement: "88%",
-        subheading: "Pacing Score"
+        subheading: "Average View Duration"
     },
     {
         Icon: IoTime,
         achievement: "2.8X",
-        subheading: "Better Retention"
+        subheading: "Watch Time"
     },
     {
         Icon: IoTrendingUp,
@@ -19,6 +19,6 @@ export const pacingStats = [
     {
         Icon: IoCheckmarkCircle,
         achievement: "93%",
-        subheading: "Rhythm Optimization"
+        subheading: "Retention Rate"
     }
 ]

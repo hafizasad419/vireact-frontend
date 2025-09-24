@@ -24,6 +24,8 @@ export interface TextAreaProps {
   rows?: number
   /** Auto-complete attribute */
   autoComplete?: string
+  /** Icon to display in the textarea */
+  Icon?: React.ComponentType<{ className?: string }>
 }
 
 const TextArea: React.FC<TextAreaProps> = ({
@@ -37,7 +39,8 @@ const TextArea: React.FC<TextAreaProps> = ({
   maxLength,
   minLength,
   rows = 4,
-  autoComplete
+  autoComplete,
+  Icon
 }) => {
   return (
     <div className="textfield-container">
@@ -55,32 +58,39 @@ const TextArea: React.FC<TextAreaProps> = ({
       <Field name={field}>
         {({ field: formikField, meta }: FieldProps) => (
           <div className="textfield-wrapper">
-            <textarea
-              {...formikField}
-              id={formikField.name}
-              disabled={isDisabled}
-              placeholder={placeholder}
-              maxLength={maxLength}
-              minLength={minLength}
-              rows={rows}
-              autoComplete={autoComplete}
-              required={required}
-              aria-invalid={meta.touched && meta.error ? "true" : "false"}
-              aria-describedby={
-                meta.touched && meta.error
-                  ? `${formikField.name}-error`
-                  : helpText
-                    ? `${formikField.name}-help`
-                    : undefined
-              }
-              className={`textfield-input resize-none ${
-                meta.touched && meta.error
-                  ? "textfield-input--error"
-                  : meta.touched && !meta.error
-                    ? "textfield-input--success"
-                    : ""
-              } ${isDisabled ? "textfield-input--disabled" : ""} ${className}`}
-            />
+            <div className="relative">
+              {Icon && (
+                <span className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                  <Icon className="textfield-icon" />
+                </span>
+              )}
+              <textarea
+                {...formikField}
+                id={formikField.name}
+                disabled={isDisabled}
+                placeholder={placeholder}
+                maxLength={maxLength}
+                minLength={minLength}
+                rows={rows}
+                autoComplete={autoComplete}
+                required={required}
+                aria-invalid={meta.touched && meta.error ? "true" : "false"}
+                aria-describedby={
+                  meta.touched && meta.error
+                    ? `${formikField.name}-error`
+                    : helpText
+                      ? `${formikField.name}-help`
+                      : undefined
+                }
+                className={`textfield-input resize-none ${
+                  meta.touched && meta.error
+                    ? "textfield-input--error"
+                    : meta.touched && !meta.error
+                      ? "textfield-input--success"
+                      : ""
+                } ${isDisabled ? "textfield-input--disabled" : ""} ${className}`}
+              />
+            </div>
 
             {meta.touched && meta.error && (
               <div id={`${formikField.name}-error`} className="textfield-error" role="alert" aria-live="polite">

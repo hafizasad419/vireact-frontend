@@ -30,11 +30,11 @@ export const footerSections: FooterSection[] = [
     {
         title: 'TRUST & LEGAL',
         links: [
-            { label: 'Terms and Conditions', href: '/terms' },
-            { label: 'Privacy Policy', href: '/privacy' },
-            { label: 'Terms Of Services', href: '/terms-of-service' },
-            { label: 'Cookies Preferences', href: '/cookies' },
-            { label: 'Accessibility Statement', href: '/accessibility' }
+            { label: 'Terms and Conditions', href: '/terms-and-conditions' },
+            { label: 'Privacy Policy', href: '/privacy-policy' },
+            { label: 'Terms Of Services', href: '/terms-of-services' },
+            { label: 'Cookies Preferences', href: '/cookies-preferences' },
+            { label: 'Accessibility Statement', href: '/accessibility-statement' }
         ]
     }
 ];

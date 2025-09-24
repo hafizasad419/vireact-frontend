@@ -8,8 +8,7 @@ import Footer from '@/components/Footer'
 import BottomCta from '@/pages/PreLogin/Pricing/BottomCta'
 
 const BaseRoutes = () => {
-  // const { isAuthenticated } = useAuth()
-  const isAuthenticated = !true
+  const { isAuthenticated } = useAuth()
   return (
 
     <>

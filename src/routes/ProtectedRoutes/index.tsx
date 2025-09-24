@@ -6,13 +6,12 @@ import UserHeader from '@/components/Header/UserHeader'
 import AdminHeader from '@/components/Header/AdminHeader'
 import { useAuth } from '@/redux/hooks/use-auth'
 import { USER_ROLES } from '@/constants'
+import BottomNav from '@/components/Header/UserHeader/BottomNav'
 
 const ProtectedRoutes = () => {
     const { isAuthenticated, role } = useAuth()
-    // const isAdmin = isAuthenticated && role === USER_ROLES.ADMIN
-    // const isUser = isAuthenticated && role === USER_ROLES.USER
-    const isAdmin = true
-    const isUser = !true
+    const isAdmin = isAuthenticated && role === USER_ROLES.ADMIN
+    const isUser = isAuthenticated && role === USER_ROLES.USER
 
     return (
 
@@ -32,6 +31,7 @@ const ProtectedRoutes = () => {
                                 <>
                                     <UserHeader />
                                     <UserRoutes />
+                                    <BottomNav />
                                 </>
 
                                 :

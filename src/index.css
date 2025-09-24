@@ -92,6 +92,15 @@
     @apply bg-white/20 backdrop-blur-3xl;
   }
 
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
 }
 
 @layer base {
@@ -107,7 +116,6 @@
   h1,
   h2 {
     @apply font-heading font-bold text-white text-4xl md:text-5xl leading-tight;
-
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -263,7 +271,7 @@
 
   /* Focus states with gradient */
   .textfield-input:focus {
-    border-color: #FF004F;
+    /* border-color: #FF004F; */
     box-shadow: 0 0 0 3px #FF004F1A;
   }
 

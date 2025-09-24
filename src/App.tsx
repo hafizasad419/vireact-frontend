@@ -5,6 +5,7 @@ import { Provider } from "react-redux"
 import { Toaster } from "react-hot-toast"
 // import { StateInitializer } from "@/components/StateInitializer"
 import { setupAuthInterceptors } from "@/utils/authInterceptor"
+import ScrollToTop from "@/utils/ScrollToTop"
 
 // Setup auth interceptors
 setupAuthInterceptors()
@@ -18,6 +19,7 @@ function App() {
             <Toaster
               position="bottom-center"
               toastOptions={{ duration: 4000 }} />
+            <ScrollToTop />
             <BaseRoutes />
           {/* </StateInitializer> */}
         </Provider>

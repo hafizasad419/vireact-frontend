@@ -1,10 +1,19 @@
-import React from 'react'
+import SocialProof from '@/components/SocialProof';
+import PreLoginPage from '@/components/Layout/PreLoginPage';
+import SignupForm from '@/pages/PreLogin/Signup/SignupForm';
 
 function Signup() {
+
+
     return (
-        <div className="flex flex-col items-center justify-center h-screen">
-            <h1 className="text-4xl font-bold">Signup</h1>
-        </div>
+        <PreLoginPage>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 min-h-screen p-0 sm:p-12">
+                {/* Left Section - Signup Form (40%) */}
+                <SignupForm />
+                {/* Right Section - Social Proof (60%) */}
+                <SocialProof />
+            </div>
+        </PreLoginPage>
     )
 }
 

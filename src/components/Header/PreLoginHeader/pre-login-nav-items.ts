@@ -16,9 +16,9 @@ export const navItems: PreLoginNavItem[] = [
             },
             {
                 id: 2,
-                title: "FlowPulse™",
+                title: "Pacing & Rhythm Score",
                 description: "AI checks pacing & engagement flow",
-                href: "/features/flowpulse",
+                href: "/features/pacing-and-rhythm",
                 icon: FaVideo,
             },
             {
@@ -37,9 +37,9 @@ export const navItems: PreLoginNavItem[] = [
             },
             {
                 id: 5,
-                title: "Pacing & Rhythm Score",
-                description: "See if your video’s too fast or slow",
-                href: "/features/pacing-rhythm",
+                title: "Advanced Analytics",
+                description: "YouTube like advanced analytics before even posting",
+                href: "/features/advanced-analytics",
                 icon: FaSlidersH,
             },
             {
@@ -54,5 +54,6 @@ export const navItems: PreLoginNavItem[] = [
     },
     { label: 'Pricing', href: '/pricing' },
     { label: 'FAQs', href: '/frequently-asked-questions' },
-    { label: 'Get in touch', href: '/get-in-touch' }
+    { label: 'Get in touch', href: '/get-in-touch' },
+    { label: 'Early Access', href: '/early-access' }
 ];

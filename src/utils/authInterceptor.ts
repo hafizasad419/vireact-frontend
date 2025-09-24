@@ -1,5 +1,5 @@
 import { store } from '@/redux/store';
-import { logout } from '@/redux/slices/auth-slice';
+import { logout, setAuthData } from '@/redux/slices/auth-slice';
 import Axios from '@/api';
 import { AUTH_TOKEN } from '@/constants';
 
@@ -21,14 +21,52 @@ export const setupAuthInterceptors = () => {
     }
   );
 
-  // Response interceptor to handle 401 errors
+  // Response interceptor to handle 401 errors and token refresh
   Axios.interceptors.response.use(
     (response) => {
       return response;
     },
-    (error) => {
+    async (error) => {
+      const originalRequest = error.config;
+      
       // Handle 401 Unauthorized responses
-      if (error.response?.status === 401) {
+      if (error.response?.status === 401 && !originalRequest._retry) {
+        originalRequest._retry = true;
+        
+        const refreshToken = store.getState().auth.refreshToken;
+        
+        if (refreshToken) {
+          try {
+            // Attempt to refresh the token
+            const response = await Axios.post('/api/v1/auth/refresh-token', {
+              refreshToken
+            });
+            
+            if (response.data.success) {
+              const { accessToken, refreshToken: newRefreshToken } = response.data.data;
+              
+              // Update Redux state
+              store.dispatch(setAuthData({
+                token: accessToken,
+                refreshToken: newRefreshToken,
+                role: store.getState().auth.role,
+                user: store.getState().auth.user
+              }));
+              
+              // Update localStorage
+              localStorage.setItem('accessToken', accessToken);
+              localStorage.setItem('refreshToken', newRefreshToken);
+              
+              // Retry the original request with new token
+              originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+              return Axios(originalRequest);
+            }
+          } catch (refreshError) {
+            console.warn('Token refresh failed, clearing authentication');
+          }
+        }
+        
+        // If refresh fails or no refresh token, clear authentication
         console.warn('Unauthorized access detected, clearing authentication');
         
         // Clear Redux state
@@ -36,6 +74,7 @@ export const setupAuthInterceptors = () => {
         
         // Clear localStorage
         localStorage.removeItem(AUTH_TOKEN);
+        localStorage.removeItem('refreshToken');
         
         // Redirect to login page (only if not already on login page)
         if (window.location.pathname !== '/login') {

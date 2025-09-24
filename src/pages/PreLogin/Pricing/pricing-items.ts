@@ -15,7 +15,7 @@ export const freeFeatures: PricingFeature[] = [
 // Starter plan features
 export const starterFeatures: PricingFeature[] = [
     { text: '150 credits per month', type: 'check' },
-    { text: 'Full insights: HookScore™, TempoCheck™, FlowPulse™ psychology engine', type: 'check' },
+    { text: 'Full insights: HookScore™, TempoCheck™, Pacing & Rhythm Score', type: 'check' },
     { text: 'SmartSubs™ captions in 20+ languages', type: 'check' },
     { text: 'Download insights reports as PDF', type: 'check' },
     { text: 'Audio clarity insights (SonicLens™)', type: 'check' },
@@ -27,7 +27,7 @@ export const starterFeatures: PricingFeature[] = [
 export const proFeatures: PricingFeature[] = [
     { text: '3,600 credits per year (instantly available)', type: 'check' },
     { text: 'Team workspace with 2 seats', type: 'check' },
-    { text: 'Advanced FlowPulse™ emotional curve mapping', type: 'check' },
+    { text: 'Advanced Pacing & Rhythm Score', type: 'check' },
     { text: 'StayOn™ retention drop-off detector', type: 'check' },
     { text: 'Priority analysis (faster processing)', type: 'check' },
     { text: 'Upload from multiple sources (YouTube, TikTok, file, cloud)', type: 'check' },
