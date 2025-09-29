@@ -1,4 +1,4 @@
-import UploadVideoInput from '@/components/UI/UploadVideoInput'
+import VideoURLInput from '@/components/UI/VideoURLInput'
 
 interface UploadCTAInterface {
     uploadButtonText?: string;
@@ -11,7 +11,7 @@ function UploadCTA({ uploadButtonText = "Upload Here", onUploadClick }: UploadCT
     return (
         <div className="flex justify-center w-full mb-6">
             <div className="flex items-center flex-col sm:flex-row gap-6">
-                <UploadVideoInput
+                <VideoURLInput
                 />
                 <p className="text-sm text-gray-400">or</p>
                 <button

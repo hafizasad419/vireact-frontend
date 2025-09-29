@@ -15,7 +15,7 @@ interface FeatureCardProps {
 
 export default function FeatureCard({ Icon, title, isSelected, onSelect, className = '' }: FeatureCardProps) {
     return (
-      <div className={`relative flex-shrink-0 ${className} py-4`}>
+      <div className={`relative flex-shrink-0 ${className} py-4 px-4`}>
         {/* Background Card */}
         <button
           onClick={onSelect}
