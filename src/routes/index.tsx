@@ -8,8 +8,8 @@ import Footer from '@/components/Footer'
 import BottomCta from '@/pages/PreLogin/Pricing/BottomCta'
 
 const BaseRoutes = () => {
-  // const { isAuthenticated } = useAuth()
-  const isAuthenticated = import.meta.env.VITE_IS_AUTHENTICATED === 'true'
+  const { isAuthenticated } = useAuth()
+  // const isAuthenticated = import.meta.env.VITE_IS_AUTHENTICATED === 'true'
   return (
 
     <>

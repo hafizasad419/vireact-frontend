@@ -2,7 +2,6 @@ import { benefits } from '@/pages/PreLogin/EarlyAccess/data/benefits-data';
 import { socialProof } from '@/pages/PreLogin/EarlyAccess/data/form-data';
 import { IoCheckmarkCircle } from 'react-icons/io5';
 import ConfettiComponent from '@/components/Confetti';
-import { Link } from 'react-router-dom';
 
 function OnSuccess() {
   return (
@@ -61,7 +60,7 @@ function OnSuccess() {
               {/* CTA */}
               <div className="space-y-4">
                 <p className="text-gray-300 text-sm">
-                  Follow us for updates and exclusive content
+                  Free Content Help Below
                 </p>
                 <div className="flex justify-center gap-4">
                   <a
@@ -70,11 +69,12 @@ function OnSuccess() {
                     className="btn-secondary">
                     Join Discord
                   </a>
-                  <Link 
-                  to="/get-in-touch"
-                    className="btn-outline">
-                    Get in touch
-                  </Link>
+                  <a
+                    href="https://drive.google.com/drive/folders/1-yRGdurWXr3aFh6chJ42xxurOsmOeltQ"
+                    target='_blank'
+                    className="btn-secondary">
+                    Get 119 Viral Hooks
+                  </a>
                 </div>
               </div>
             </div>

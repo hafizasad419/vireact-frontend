@@ -26,7 +26,7 @@ function DashboardHeader({ name, selectedFeatureIds }: DashboardHeaderProps) {
                 <div className="inline-flex items-center px-6 py-2 bg-gray bg-dark-primary border border-green-500 rounded-full mb-4">
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse mr-2"></div>
                     <span className="text-sm text-green-500 uppercase">
-                        {selectedFeatureIds.length} feature{selectedFeatureIds.length !== 1 ? 's' : ''} selected
+                        {selectedFeatureIds.length} out of 6 feature{selectedFeatureIds.length !== 1 ? 's' : ''} selected
                     </span>
                 </div>
             </div>

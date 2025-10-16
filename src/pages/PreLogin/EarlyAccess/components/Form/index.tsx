@@ -23,7 +23,7 @@ const EarlyAccessSchema = Yup.object().shape({
     .matches(/^[\+]?[1-9][\d]{0,15}$/, 'Please enter a valid phone number')
     .optional(),
   goal: Yup.string()
-    .min(10, 'Please provide more details about your goal')
+    .min(5, 'Please provide at least 5 characters')
     .max(500, 'Goal description must be less than 500 characters')
     .required('Please tell us about your content creation/AI goals'),
 });
