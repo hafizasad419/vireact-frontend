@@ -1,4 +1,4 @@
-import { IoSparkles, IoStar, IoFlash, IoShield } from 'react-icons/io5';
+import { IoSparkles, IoStar, IoShield } from 'react-icons/io5';
 
 export interface Benefit {
   icon: React.ComponentType<{ className?: string }>;
@@ -8,19 +8,14 @@ export interface Benefit {
 
 export const benefits: Benefit[] = [
   {
-    icon: IoSparkles,
-    title: 'Early Access',
-    description: 'Be among the first to experience our revolutionary platform'
-  },
-  {
     icon: IoStar,
-    title: 'Exclusive Features',
-    description: 'Access to premium features before public release'
+    title: 'Free Resources',
+    description: 'Access to a completely free PDF containing 119 hooks + the viral storytelling structure I use'
   },
   {
-    icon: IoFlash,
-    title: 'Priority Support',
-    description: 'Direct line to our founding team for feedback and support'
+    icon: IoSparkles,
+    title: 'AI Analysis Platform',
+    description: 'Early access to our AI tool that analyzes videos and gives constructive feedback on how to improve them'
   },
   {
     icon: IoShield,

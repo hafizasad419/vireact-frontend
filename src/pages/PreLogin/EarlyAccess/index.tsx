@@ -24,7 +24,7 @@ function EarlyAccess() {
           {/* Header Section */}
           <SectionHeader
             badge="Early Access"
-            title="Be among the first to experience our AI-powered video analysis platform"
+            title="Be among the first to access our free content rescources and AI-powered video analysis platform"
             icon={<IoSparkles className="w-4 h-4 text-gray-400" />}
             className="text-center mb-16"
           />

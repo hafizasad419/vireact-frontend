@@ -1,4 +1,4 @@
-import { benefits } from '@/pages/PreLogin/EarlyAccess/data/benefits-data';
+import { benefits } from '@/pages/PreLogin/EarlyAccess/components/Benefits/data/benefits-data';
 import { socialProof } from '@/pages/PreLogin/EarlyAccess/data/form-data';
 import { IoCheckmarkCircle } from 'react-icons/io5';
 import ConfettiComponent from '@/components/Confetti';

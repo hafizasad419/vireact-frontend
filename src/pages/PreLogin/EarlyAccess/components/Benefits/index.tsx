@@ -12,7 +12,7 @@ function Benefits() {
           Why Join Early Access?
         </h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {benefits.map((benefit, index) => (
             <div key={index} className="flex flex-col items-center text-center p-4 bg-white/5 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300">
               <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mb-3">
