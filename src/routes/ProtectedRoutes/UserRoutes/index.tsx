@@ -6,6 +6,7 @@ function UserRoutes() {
     const Dashboard = lazy(() => import('@/pages/User/Dashboard'));
     const Analytics = lazy(() => import('@/pages/User/Analytics'));
     const Videos = lazy(() => import('@/pages/User/Videos'));
+    const Chat = lazy(() => import('@/pages/User/Chat'));
     const Profile = lazy(() => import('@/pages/User/Profile'));
     const Settings = lazy(() => import('@/pages/User/Settings'));
 
@@ -15,6 +16,7 @@ function UserRoutes() {
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/analytics' element={<Analytics />} />
                 <Route path='/videos' element={<Videos />} />
+                <Route path='/videos/:videoId' element={<Chat />} />
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/' element={<Navigate to="/dashboard" />} />

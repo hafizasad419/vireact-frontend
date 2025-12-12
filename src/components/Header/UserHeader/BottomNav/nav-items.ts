@@ -23,12 +23,6 @@ export const navItems: NavItem[] = [
     isActive: true
   },
   {
-    id: 'analytics',
-    label: 'Analytics',
-    icon: FaChartLine,
-    path: '/analytics'
-  },
-  {
     id: 'videos',
     label: 'Videos',
     icon: FaVideo,

@@ -38,7 +38,7 @@ export const setupAuthInterceptors = () => {
         if (refreshToken) {
           try {
             // Attempt to refresh the token
-            const response = await Axios.post('/api/v1/auth/refresh-token', {
+            const response = await Axios.post('/auth/refresh-token', {
               refreshToken
             });
             

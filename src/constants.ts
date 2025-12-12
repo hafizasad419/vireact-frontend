@@ -53,3 +53,33 @@ export const UPLOAD_VALIDATION = {
         FACEBOOK_REGEX: /^(https?:\/\/)?(www\.)?(facebook\.com\/[\w.-]+\/videos\/\d+)/,
     }
 }
+
+// VIDEO UPLOAD STATUS
+export const UPLOAD_STATUS = {
+    PENDING: 'pending',
+    UPLOADING: 'uploading',
+    COMPLETED: 'completed',
+    FAILED: 'failed'
+} as const;
+
+// VIDEO ANALYSIS STATUS
+export const ANALYSIS_STATUS = {
+    PENDING: 'pending',
+    PROCESSING: 'processing',
+    COMPLETED: 'completed',
+    FAILED: 'failed'
+} as const;
+
+// CHAT WELCOME MESSAGES
+export const CHAT_WELCOME_MESSAGES = [
+    (name: string) => `Hey ${name}! Ready to make your video even better? Let's dive in!`,
+    (name: string) => `Welcome ${name}! I'm here to help you improve your video. What would you like to know?`,
+    (name: string) => `Hi ${name}! Let's analyze your video and unlock its full potential together.`,
+    (name: string) => `Hello ${name}! I'm excited to help you enhance your video content. Ask me anything!`,
+    (name: string) => `Hey there ${name}! Ready to take your video to the next level? Let's get started!`,
+    (name: string) => `Welcome ${name}! I'm your video improvement assistant. What can I help you with today?`,
+    (name: string) => `Hi ${name}! Let's work together to make your video stand out. What questions do you have?`,
+    (name: string) => `Hello ${name}! I'm here to provide insights and suggestions for your video. Let's begin!`,
+    (name: string) => `Hey ${name}! Ready to optimize your video? I'm here to guide you every step of the way.`,
+    (name: string) => `Welcome ${name}! Let's explore how we can improve your video's performance and engagement.`
+];

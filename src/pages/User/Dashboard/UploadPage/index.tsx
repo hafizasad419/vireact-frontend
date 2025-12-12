@@ -1,8 +1,12 @@
-import { useState } from 'react';
-import { FaLink, FaVideo, FaArrowLeft, FaWandMagicSparkles } from 'react-icons/fa6';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FaLink, FaVideo, FaArrowLeft, FaCheck, FaTimes } from 'react-icons/fa';
+import { FaWandMagicSparkles } from 'react-icons/fa6';
 import VideoURLInput from '@/components/UI/VideoURLInput';
 import VideoUploadInput from '@/components/UI/VideoUploadInput';
 import { UPLOAD_VALIDATION } from '@/constants';
+import { uploadVideoFileToTwelveLabs, uploadVideoUrlToTwelveLabs } from '@/api/video';
+import { ErrorNotification, SuccessNotification } from '@/utils/toast';
 
 interface UploadPageProps {
     selectedFeatureIds: string[];
@@ -10,12 +14,25 @@ interface UploadPageProps {
     onAnalyze: (data: { type: 'url' | 'file'; content: string | File }) => void;
 }
 
+interface VideoMetadata {
+    duration: number;
+    size: number;
+    format: string;
+    previewUrl: string;
+}
+
 function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) {
-    const [uploadType, setUploadType] = useState<'url' | 'file'>('url');
+    const navigate = useNavigate();
+    const [uploadType, setUploadType] = useState<'url' | 'file'>('file');
     const [url, setUrl] = useState('');
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [error, setError] = useState('');
     const [isValidating, setIsValidating] = useState(false);
+    const [videoMetadata, setVideoMetadata] = useState<VideoMetadata | null>(null);
+    const [isUploading, setIsUploading] = useState(false);
+    const [uploadProgress, setUploadProgress] = useState(0);
+    const [showConfirmButtons, setShowConfirmButtons] = useState(false);
+    const videoRef = useRef<HTMLVideoElement | null>(null);
 
     const validateUrl = (url: string): boolean => {
         const { URL } = UPLOAD_VALIDATION;
@@ -26,33 +43,171 @@ function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) 
             URL.TWITTER_REGEX,
             URL.FACEBOOK_REGEX
         ];
-        
+
         return patterns.some(pattern => pattern.test(url));
     };
 
-    const handleUrlSubmit = () => {
+    const handleUrlSubmit = useCallback(async () => {
         if (!url.trim()) {
             setError('Please enter a URL');
             return;
         }
 
-        if (!validateUrl(url)) {
-            setError('Please enter a valid URL from supported platforms (YouTube, TikTok, Instagram, Twitter, Facebook)');
+        setError('');
+        setIsUploading(true);
+        setUploadProgress(0);
+
+        try {
+            // Upload URL to TwelveLabs
+            await uploadVideoUrlToTwelveLabs(
+                url.trim(),
+                `video_${Date.now()}.mp4`,
+                selectedFeatureIds
+            );
+
+            SuccessNotification('Video URL uploaded successfully!');
+
+            // Redirect to videos page
+            setTimeout(() => {
+                navigate('/videos');
+            }, 500);
+        } catch (err: any) {
+            const errorMessage = err?.response?.data?.message || err?.message || 'Failed to upload video URL';
+            setError(errorMessage);
+            ErrorNotification(errorMessage);
+        } finally {
+            setIsUploading(false);
+            setUploadProgress(0);
+        }
+    }, [url, selectedFeatureIds, navigate]);
+
+    const extractVideoMetadata = useCallback(async (file: File): Promise<VideoMetadata> => {
+        return new Promise((resolve, reject) => {
+            const video = document.createElement('video');
+            const previewUrl = URL.createObjectURL(file);
+            video.preload = 'metadata';
+
+            video.onloadedmetadata = () => {
+                const fileExtension = file.name.split('.').pop()?.toLowerCase() || '';
+                resolve({
+                    duration: video.duration,
+                    size: file.size,
+                    format: fileExtension,
+                    previewUrl
+                });
+            };
+
+            video.onerror = () => {
+                reject(new Error('Failed to load video metadata'));
+            };
+
+            video.src = previewUrl;
+        });
+    }, []);
+
+
+    const handleFileSelect = useCallback(async (file: File) => {
+        setSelectedFile(file);
+        setError('');
+        setShowConfirmButtons(false);
+        setUploadProgress(0);
+
+        // Clean up previous preview URL
+        if (videoMetadata?.previewUrl) {
+            URL.revokeObjectURL(videoMetadata.previewUrl);
+        }
+
+        try {
+            setIsValidating(true);
+            const metadata = await extractVideoMetadata(file);
+            setVideoMetadata(metadata);
+            setShowConfirmButtons(true);
+        } catch (err: any) {
+            const errorMessage = err?.message || 'Failed to process video file';
+            setError(errorMessage);
+            ErrorNotification(errorMessage);
+            setSelectedFile(null);
+        } finally {
+            setIsValidating(false);
+        }
+    }, [extractVideoMetadata, videoMetadata]);
+
+    const handleFileError = useCallback((errorMessage: string) => {
+        setError(errorMessage);
+        ErrorNotification(errorMessage);
+    }, []);
+
+    const handleChangeVideo = useCallback(() => {
+        // Clean up preview URL
+        if (videoMetadata?.previewUrl) {
+            URL.revokeObjectURL(videoMetadata.previewUrl);
+        }
+
+        // Reset state
+        setSelectedFile(null);
+        setVideoMetadata(null);
+        setShowConfirmButtons(false);
+        setUploadProgress(0);
+        setError('');
+
+        // Clear file input
+        const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+        if (fileInput) {
+            fileInput.value = '';
+        }
+    }, [videoMetadata]);
+
+    const handleConfirmUpload = useCallback(async () => {
+        if (!selectedFile) {
+            setError('Please select a video file');
             return;
         }
 
+        setIsUploading(true);
         setError('');
-        onAnalyze({ type: 'url', content: url });
-    };
+        setUploadProgress(0);
 
-    const handleFileSelect = (file: File) => {
-        setSelectedFile(file);
-        setError('');
-    };
+        try {
+            // Upload to TwelveLabs with progress tracking
+            await uploadVideoFileToTwelveLabs(
+                selectedFile,
+                selectedFile.name,
+                selectedFeatureIds,
+                (progress) => {
+                    setUploadProgress(progress);
+                }
+            );
 
-    const handleFileError = (errorMessage: string) => {
-        setError(errorMessage);
-    };
+            setUploadProgress(100);
+            SuccessNotification('Video uploaded successfully!');
+
+            // Clean up preview URL
+            if (videoMetadata?.previewUrl) {
+                URL.revokeObjectURL(videoMetadata.previewUrl);
+            }
+
+            // Redirect to videos page
+            setTimeout(() => {
+                navigate('/videos');
+            }, 500);
+        } catch (err: any) {
+            const errorMessage = err?.response?.data?.message || err?.message || 'Failed to upload video';
+            setError(errorMessage);
+            ErrorNotification(errorMessage);
+            setUploadProgress(0);
+        } finally {
+            setIsUploading(false);
+        }
+    }, [selectedFile, selectedFeatureIds, videoMetadata, navigate]);
+
+    // Cleanup on unmount
+    useEffect(() => {
+        return () => {
+            if (videoMetadata?.previewUrl) {
+                URL.revokeObjectURL(videoMetadata.previewUrl);
+            }
+        };
+    }, [videoMetadata]);
 
     const handleFileSubmit = () => {
         if (!selectedFile) {
@@ -72,7 +227,7 @@ function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) 
         }
     };
 
-    const isAnalyzeDisabled = uploadType === 'url' 
+    const isAnalyzeDisabled = uploadType === 'url'
         ? !url.trim() || !validateUrl(url)
         : !selectedFile;
 
@@ -90,7 +245,7 @@ function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) 
                     <FaArrowLeft className="w-4 h-4" />
                     <span>Back to Features</span>
                 </button>
-                
+
                 <h2 className="text-white text-2xl sm:text-3xl font-semibold mb-4">
                     Upload Your Short Video
                 </h2>
@@ -102,33 +257,36 @@ function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) 
             {/* Upload Type Selector */}
             <div className="flex justify-center mb-8">
                 <div className="flex bg-gray-800 rounded-lg p-1 relative z-10">
-                    <button
-                        onClick={() => {
-                            console.log('URL tab clicked');
-                            setUploadType('url');
-                        }}
-                        className={`flex items-center gap-2 px-6 py-3 rounded-md transition-all duration-300 cursor-pointer ${
-                            uploadType === 'url'
-                                ? 'bg-white text-black'
-                                : 'text-white/60 hover:text-white'
-                        }`}
-                    >
-                        <FaLink className="w-4 h-4" />
-                        <span>URL Link</span>
-                    </button>
+
+
+                    {/* Upload File Button */}
                     <button
                         onClick={() => {
                             console.log('File tab clicked');
                             setUploadType('file');
                         }}
-                        className={`flex items-center gap-2 px-6 py-3 rounded-md transition-all duration-300 cursor-pointer ${
-                            uploadType === 'file'
-                                ? 'bg-white text-black'
-                                : 'text-white/60 hover:text-white'
-                        }`}
+                        className={`flex items-center gap-2 px-6 py-3 rounded-md transition-all duration-300 cursor-pointer ${uploadType === 'file'
+                            ? 'bg-white text-black'
+                            : 'text-white/60 hover:text-white'
+                            }`}
                     >
                         <FaVideo className="w-4 h-4" />
                         <span>Upload File</span>
+                    </button>
+
+                    {/* URL Link Button */}
+                    <button
+                        onClick={() => {
+                            console.log('URL tab clicked');
+                            setUploadType('url');
+                        }}
+                        className={`flex items-center gap-2 px-6 py-3 rounded-md transition-all duration-300 cursor-pointer ${uploadType === 'url'
+                            ? 'bg-white text-black'
+                            : 'text-white/60 hover:text-white'
+                            }`}
+                    >
+                        <FaLink className="w-4 h-4" />
+                        <span>URL Link</span>
                     </button>
                 </div>
             </div>
@@ -162,6 +320,88 @@ function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) 
                                 onError={handleFileError}
                             />
                         </div>
+
+                        {/* Video Preview and Metadata */}
+                        {selectedFile && videoMetadata && (
+                            <div className="mt-6 p-4 bg-gray-800/50 rounded-lg">
+                                <h3 className="text-white font-semibold mb-4">Video Preview</h3>
+
+                                {/* Video Player */}
+                                <div className="mb-4">
+                                    <video
+                                        ref={videoRef}
+                                        src={videoMetadata.previewUrl}
+                                        controls
+                                        className="w-full rounded-lg max-h-64"
+                                    />
+                                </div>
+
+                                {/* Metadata */}
+                                <div className="grid grid-cols-2 gap-4 mb-4 text-sm">
+                                    <div>
+                                        <span className="text-gray-400">Duration:</span>
+                                        <span className="text-white ml-2">
+                                            {Math.round(videoMetadata.duration)}s
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className="text-gray-400">Size:</span>
+                                        <span className="text-white ml-2">
+                                            {(videoMetadata.size / (1024 * 1024)).toFixed(2)} MB
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className="text-gray-400">Format:</span>
+                                        <span className="text-white ml-2 uppercase">
+                                            {videoMetadata.format}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className="text-gray-400">Filename:</span>
+                                        <span className="text-white ml-2 truncate">
+                                            {selectedFile.name}
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                {/* Upload Progress */}
+                                {isUploading && (
+                                    <div className="mb-4">
+                                        <div className="flex items-center justify-between mb-2">
+                                            <span className="text-white text-sm font-semibold">Uploading...</span>
+                                            <span className="text-gray-400 text-sm">{uploadProgress}%</span>
+                                        </div>
+                                        <div className="w-full bg-gray-700 rounded-full h-2">
+                                            <div
+                                                className="bg-green-500 h-2 rounded-full transition-all duration-300"
+                                                style={{ width: `${uploadProgress}%` }}
+                                            />
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Confirm/Change Buttons */}
+                                {showConfirmButtons && !isUploading && (
+                                    <div className="flex gap-4">
+                                        <button
+                                            onClick={handleConfirmUpload}
+                                            className="flex-1 btn-primary !rounded-lg flex items-center justify-center gap-2"
+                                        >
+                                            <FaCheck className="w-4 h-4" />
+                                            <span>Confirm & Upload</span>
+                                        </button>
+                                        <button
+                                            onClick={handleChangeVideo}
+                                            className="flex-1 btn-secondary !rounded-lg flex items-center justify-center gap-2"
+                                        >
+                                            <FaTimes className="w-4 h-4" />
+                                            <span>Change Video</span>
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     </div>
                 )}
 
@@ -187,19 +427,29 @@ function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) 
                     </div>
                 </div>
 
-                {/* Analyze Button */}
-                <div className="flex justify-center mt-8">
-                    <button
-                        onClick={handleAnalyze}
-                        disabled={isAnalyzeDisabled}
-                        className={`btn-primary !rounded-full flex items-center gap-2 ${
-                            isAnalyzeDisabled ? 'opacity-50 cursor-not-allowed' : ''
-                        }`}
-                    >
-                        <FaWandMagicSparkles className="w-5 h-5" />
-                        <span>Start Analysis</span>
-                    </button>
-                </div>
+                {/* Analyze Button - Only show for URL upload type */}
+                {uploadType === 'url' && (
+                    <div className="flex justify-center mt-8">
+                        <button
+                            onClick={handleUrlSubmit}
+                            disabled={!url.trim() || isUploading}
+                            className={`btn-primary !rounded-full flex items-center gap-2 ${!url.trim() || isUploading ? 'opacity-50 cursor-not-allowed' : ''
+                                }`}
+                        >
+                            {isUploading ? (
+                                <>
+                                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                    <span>Uploading...</span>
+                                </>
+                            ) : (
+                                <>
+                                    <FaWandMagicSparkles className="w-5 h-5" />
+                                    <span>Upload & Analyze</span>
+                                </>
+                            )}
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );
