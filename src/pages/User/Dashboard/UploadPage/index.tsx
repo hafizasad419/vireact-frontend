@@ -74,7 +74,13 @@ function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) 
         } catch (err: any) {
             const errorMessage = err?.response?.data?.message || err?.message || 'Failed to upload video URL';
             setError(errorMessage);
-            ErrorNotification(errorMessage);
+            
+            // Check if it's a subscription limit error
+            if (err?.response?.status === 403 && errorMessage.includes('limit')) {
+                ErrorNotification(errorMessage + ' Visit Settings > Subscription to upgrade.');
+            } else {
+                ErrorNotification(errorMessage);
+            }
         } finally {
             setIsUploading(false);
             setUploadProgress(0);
@@ -193,7 +199,13 @@ function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) 
         } catch (err: any) {
             const errorMessage = err?.response?.data?.message || err?.message || 'Failed to upload video';
             setError(errorMessage);
-            ErrorNotification(errorMessage);
+            
+            // Check if it's a subscription limit error
+            if (err?.response?.status === 403 && errorMessage.includes('limit')) {
+                ErrorNotification(errorMessage + ' Visit Settings > Subscription to upgrade.');
+            } else {
+                ErrorNotification(errorMessage);
+            }
             setUploadProgress(0);
         } finally {
             setIsUploading(false);

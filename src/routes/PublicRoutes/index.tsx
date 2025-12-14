@@ -36,11 +36,11 @@ function PublicRoutes() {
                 <Route path='*' element={<Navigate to="/" />} />
                 <Route path='/' element={<Home />} />
                 <Route path='/pricing' element={<Pricing />} />
-                <Route path='/login' element={<Login />} />
-                {/* <Route path='/signup' element={<Signup />} /> */}
                 <Route path='/auth/google/callback' element={<GoogleCallback />} />
-                {/* <Route path='/verify-email' element={<VerifyEmail />} /> */}
-                {/* <Route path='/resend-verification' element={<ResendVerification />} /> */}
+                <Route path='/login' element={<Login />} />
+                <Route path='/signup' element={<Signup />} />
+                <Route path='/verify-email' element={<VerifyEmail />} />
+                <Route path='/resend-verification' element={<ResendVerification />} />
 
                 {/* Features */}
                 <Route path='/features/viral-predictor' element={<ViralPredictor />} />

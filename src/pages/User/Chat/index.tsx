@@ -160,9 +160,17 @@ function Chat() {
                 });
                 return updated;
             });
-        } catch (error) {
+        } catch (error: any) {
             console.error('Failed to send message:', error);
-            ErrorNotification('Failed to send message. Please try again.');
+            const errorMessage = error?.response?.data?.message || 'Failed to send message. Please try again.';
+            
+            // Check if it's a subscription limit error
+            if (error?.response?.status === 403 && errorMessage.includes('limit')) {
+                ErrorNotification(errorMessage + ' Visit Settings > Subscription to upgrade.');
+            } else {
+                ErrorNotification(errorMessage);
+            }
+            
             // Remove temp message on error
             setMessages((prev) => prev.filter(msg => msg.id !== tempUserMessage.id));
         } finally {

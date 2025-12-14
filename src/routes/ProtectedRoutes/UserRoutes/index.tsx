@@ -9,6 +9,8 @@ function UserRoutes() {
     const Chat = lazy(() => import('@/pages/User/Chat'));
     const Profile = lazy(() => import('@/pages/User/Profile'));
     const Settings = lazy(() => import('@/pages/User/Settings'));
+    const SubscriptionUsage = lazy(() => import('@/pages/User/SubscriptionUsage'));
+    const SubscriptionPlans = lazy(() => import('@/pages/User/SubscriptionPlans'));
 
     return (
         <Suspense fallback={<Fallback />}>
@@ -19,6 +21,8 @@ function UserRoutes() {
                 <Route path='/videos/:videoId' element={<Chat />} />
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/settings' element={<Settings />} />
+                <Route path='/subscription-usage' element={<SubscriptionUsage />} />
+                <Route path='/subscription-plans' element={<SubscriptionPlans />} />
                 <Route path='/' element={<Navigate to="/dashboard" />} />
                 <Route path='*' element={<Navigate to="/dashboard" />} />
             </Routes>
