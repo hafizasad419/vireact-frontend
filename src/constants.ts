@@ -6,9 +6,9 @@ export const USER_ROLES = {
 
 export const FEATURES_IDS = {
     HOOK: "hook",
-    PACING_RHYTHM: "pacing_rhythm",
+    PACING_RHYTHM: "pacing",
     AUDIO: "audio",
-    VIEWS: "views",
+    VIEWS: "views_predictor",
     ADVANCED_ANALYTICS: "advanced_analytics",
     CAPTION: "caption"
 }
