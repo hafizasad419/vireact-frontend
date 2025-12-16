@@ -5,12 +5,16 @@ import TestimonialsSection from '@/components/Home/TestimonialsSection';
 import WhyChooseUsSection from '@/components/Home/WhyChooseUsSection';
 import FAQSection from '@/components/Home/FAQSection';
 import PreLoginPage from '@/components/Layout/PreLoginPage';
+import Niches from '@/components/FeaturesPage/Niches';
 
 function Home() {
     return (
         <PreLoginPage>
             {/* Hero Section */}
             <HeroSection />
+
+            {/* Niches Slideshow */}
+            <Niches />
 
             {/* Testimonials Section */}
             <TestimonialsSection />
