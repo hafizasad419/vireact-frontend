@@ -83,3 +83,32 @@ export const CHAT_WELCOME_MESSAGES = [
     (name: string) => `Hey ${name}! Ready to optimize your video? I'm here to guide you every step of the way.`,
     (name: string) => `Welcome ${name}! Let's explore how we can improve your video's performance and engagement.`
 ];
+
+
+// Store in constants.ts
+export const VIDEO_INDEXING_MESSAGES = [
+    "Getting your video ready to search... We're analyzing the content so you can find any moment later. Please do not close this tab.",
+    
+    "Processing your video... We're breaking it down into searchable moments, like creating a smart table of contents. Please do not close this tab.",
+    
+    "Understanding your video... We're creating a map of what's inside so you can navigate it easily. Please do not close this tab.",
+    
+    "Analyzing your content... We're scanning through to understand what's in it so you can search instantly. Please do not close this tab.",
+    
+    "Making your video searchable... We're organizing it so you can jump to any specific moment. Please do not close this tab.",
+    
+    "Preparing your video... We're reading through it so you can skip straight to what you need. Please do not close this tab.",
+    
+    "Setting up smart search... We're going through your video to tag important moments for you. Please do not close this tab.",
+    
+    "Building your video index... We're labeling everything so you can find it instantly later. Please do not close this tab.",
+    
+    "Teaching our system about your video... It's learning the content so searching will be lightning-fast. Please do not close this tab.",
+    
+    "Creating a searchable guide of your video... Soon you'll never have to scrub through randomly again. Please do not close this tab."
+  ];
+  
+  // Helper function to get a random message
+  export const getRandomIndexingMessage = () => {
+    return VIDEO_INDEXING_MESSAGES[Math.floor(Math.random() * VIDEO_INDEXING_MESSAGES.length)];
+  };

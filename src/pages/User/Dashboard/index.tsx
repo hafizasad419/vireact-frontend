@@ -18,7 +18,6 @@ function Dashboard() {
   const handleAnalyze = (data: { type: 'url' | 'file'; content: string | File }) => {
     console.log('Analyzing:', data);
     console.log('Selected features:', selectedFeatureIds);
-    // Here you would typically send the data to your backend
   };
 
   const handleBackToFeatures = () => {

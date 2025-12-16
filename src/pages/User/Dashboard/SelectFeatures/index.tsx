@@ -1,6 +1,6 @@
 import FeatureCard from '@/components/User/Dashboard/FeatureCard';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { useState, useRef } from 'react';
+import { FaChevronLeft, FaChevronRight, FaCheckSquare } from 'react-icons/fa';
+import { useState, useRef, useCallback } from 'react';
 import { features } from '@/components/User/Dashboard/FeatureCard/feature-items';
 
 
@@ -42,6 +42,18 @@ function SelectFeatures({ selectedFeatureIds, setSelectedFeatureIds }: SelectFea
             : [...selectedFeatureIds, featureId];
         setSelectedFeatureIds(newIds);
     };
+
+    const handleSelectAll = useCallback(() => {
+        if (selectedFeatureIds.length === features.length) {
+            // Deselect all
+            setSelectedFeatureIds([]);
+        } else {
+            // Select all
+            setSelectedFeatureIds(features.map(f => f.id));
+        }
+    }, [selectedFeatureIds.length, setSelectedFeatureIds]);
+
+    const isAllSelected = selectedFeatureIds.length === features.length;
 
     // Touch/Swipe handling
     const handleTouchStart = (e: React.TouchEvent) => {
@@ -89,6 +101,30 @@ function SelectFeatures({ selectedFeatureIds, setSelectedFeatureIds }: SelectFea
                         {features[currentFeature].description}
                     </p>
                 </div>
+            </div>
+
+            {/* Select All Checkbox */}
+            <div className="flex justify-center mb-6 sm:mb-8">
+                <button
+                    onClick={handleSelectAll}
+                    className="group flex items-center gap-3 px-6 py-3 bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/40 rounded-xl transition-all duration-300"
+                >
+                    <div className={`relative w-6 h-6 rounded-md border-2 transition-all duration-300 flex items-center justify-center ${
+                        isAllSelected 
+                            ? 'bg-gradient-to-br from-green-400 to-green-600 border-green-500' 
+                            : 'border-white/40 group-hover:border-white/60'
+                    }`}>
+                        {isAllSelected && (
+                            <FaCheckSquare className="w-4 h-4 text-white" />
+                        )}
+                    </div>
+                    <span className="text-white font-medium text-sm sm:text-base">
+                        {isAllSelected ? 'Deselect All Features' : 'Select All Features'}
+                    </span>
+                    <span className="text-white/60 text-xs sm:text-sm">
+                        ({selectedFeatureIds.length}/{features.length})
+                    </span>
+                </button>
             </div>
 
             {/* Feature Slideshow */}

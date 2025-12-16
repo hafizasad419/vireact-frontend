@@ -52,7 +52,11 @@ function Videos() {
         }
     }, []);
 
-    const handleCardClick = useCallback((videoId: string) => {
+    const handleCardClick = useCallback((videoId: string, analysisStatus: string) => {
+        if (analysisStatus === ANALYSIS_STATUS.PENDING) {
+            ErrorNotification('Video analysis is still pending. Please wait for analysis to complete.');
+            return;
+        }
         navigate(`/videos/${videoId}`);
     }, [navigate]);
 
@@ -178,11 +182,17 @@ function Videos() {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                        {videos.map((video) => (
+                        {videos.map((video) => {
+                            const isPending = video.analysisStatus === ANALYSIS_STATUS.PENDING;
+                            return (
                             <div
                                 key={video._id}
-                                onClick={() => handleCardClick(video._id)}
-                                className="bg-gray-800/50 rounded-lg p-4 sm:p-6 hover:bg-gray-800/70 transition-colors relative cursor-pointer"
+                                onClick={() => handleCardClick(video._id, video.analysisStatus)}
+                                className={`bg-gray-800/50 rounded-lg p-4 sm:p-6 transition-colors relative ${
+                                    isPending 
+                                        ? 'opacity-60 cursor-not-allowed' 
+                                        : 'hover:bg-gray-800/70 cursor-pointer'
+                                }`}
                             >
                                 {/* Video Thumbnail/Icon */}
                                 <div className="w-full aspect-video bg-gray-900 rounded-lg mb-4 flex items-center justify-center">
@@ -277,7 +287,8 @@ function Videos() {
                                     </div>
                                 </div>
                             </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 )}
             </div>

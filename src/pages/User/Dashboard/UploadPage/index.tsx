@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaLink, FaVideo, FaArrowLeft, FaCheck, FaTimes } from 'react-icons/fa';
-import { FaWandMagicSparkles } from 'react-icons/fa6';
+import { FaWandMagicSparkles, FaSpinner } from 'react-icons/fa6';
 import VideoURLInput from '@/components/UI/VideoURLInput';
 import VideoUploadInput from '@/components/UI/VideoUploadInput';
-import { UPLOAD_VALIDATION } from '@/constants';
+import { UPLOAD_VALIDATION, getRandomIndexingMessage } from '@/constants';
 import { uploadVideoFileToTwelveLabs, uploadVideoUrlToTwelveLabs } from '@/api/video';
 import { ErrorNotification, SuccessNotification } from '@/utils/toast';
 
@@ -32,6 +32,7 @@ function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) 
     const [isUploading, setIsUploading] = useState(false);
     const [uploadProgress, setUploadProgress] = useState(0);
     const [showConfirmButtons, setShowConfirmButtons] = useState(false);
+    const [indexingMessage, setIndexingMessage] = useState('');
     const videoRef = useRef<HTMLVideoElement | null>(null);
 
     const validateUrl = (url: string): boolean => {
@@ -56,6 +57,7 @@ function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) 
         setError('');
         setIsUploading(true);
         setUploadProgress(0);
+        setIndexingMessage(getRandomIndexingMessage());
 
         try {
             // Upload URL to TwelveLabs
@@ -84,6 +86,7 @@ function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) 
         } finally {
             setIsUploading(false);
             setUploadProgress(0);
+            setIndexingMessage('');
         }
     }, [url, selectedFeatureIds, navigate]);
 
@@ -172,6 +175,7 @@ function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) 
         setIsUploading(true);
         setError('');
         setUploadProgress(0);
+        setIndexingMessage(getRandomIndexingMessage());
 
         try {
             // Upload to TwelveLabs with progress tracking
@@ -209,6 +213,7 @@ function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) 
             setUploadProgress(0);
         } finally {
             setIsUploading(false);
+            setIndexingMessage('');
         }
     }, [selectedFile, selectedFeatureIds, videoMetadata, navigate]);
 
@@ -245,6 +250,18 @@ function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) 
 
     return (
         <div className="px-2 sm:px-4 py-6 sm:py-8">
+            {/* Indexing Overlay */}
+            {isUploading && indexingMessage && (
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center">
+                    <div className="text-center max-w-md px-6">
+                        <FaSpinner className="w-16 h-16 text-white mx-auto mb-6 animate-spin" />
+                        <p className="text-white text-lg font-medium leading-relaxed">
+                            {indexingMessage}
+                        </p>
+                    </div>
+                </div>
+            )}
+
             {/* Background Gradient Circle */}
             <div className="absolute top-20 sm:top-32 left-1/2 transform -translate-x-1/2 w-64 sm:w-96 h-64 sm:h-96 bg-gradient-primary rounded-full opacity-30 blur-3xl" />
 
