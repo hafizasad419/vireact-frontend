@@ -13,7 +13,7 @@ function Home() {
             {/* Hero Section */}
             <HeroSection />
 
-            {/* Niches Slideshow */}
+            {/* Niches Slideshow Section */}
             <Niches />
 
             {/* Testimonials Section */}
