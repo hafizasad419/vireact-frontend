@@ -65,7 +65,7 @@ function OnSuccess() {
                 <div className="flex justify-center gap-4">
                   <a
                     target='_blank'
-                    href="https://discord.gg/PZf9dbQbH"
+                    href="https://discord.gg/ENYHFp6MP"
                     className="btn-secondary">
                     Join Discord
                   </a>
