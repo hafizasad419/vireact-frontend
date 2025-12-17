@@ -6,6 +6,9 @@ import WhyChooseUsSection from '@/components/Home/WhyChooseUsSection';
 import FAQSection from '@/components/Home/FAQSection';
 import PreLoginPage from '@/components/Layout/PreLoginPage';
 import Niches from '@/components/FeaturesPage/Niches';
+import AIFeatures from '@/components/UI/AIFeatures';
+import CreatorsAndBusinesses from '@/components/FeaturesPage/CreatorsAndBusinesses';
+import AnalyticsScreenshots from '@/components/Home/AnalyticsScreenshots';
 
 function Home() {
     return (
@@ -13,11 +16,21 @@ function Home() {
             {/* Hero Section */}
             <HeroSection />
 
+            {/* AI Features */}
+            <AIFeatures />
+
+            {/* Creators and Businesses Section */}
+            <CreatorsAndBusinesses />
+
             {/* Niches Slideshow Section */}
             <Niches />
 
             {/* Testimonials Section */}
             <TestimonialsSection />
+
+            {/* Analytics Screenshots Section */}
+            <AnalyticsScreenshots />
+
 
             {/* How It Works Section */}
             <HowItWorksSection />

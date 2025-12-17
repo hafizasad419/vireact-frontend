@@ -22,11 +22,11 @@ function Niches() {
             </div>
 
             {/* Content Cards Section */}
-            <div className="relative">
+            <div className="relative overflow-hidden">
                 <CustomMarquee
                     speed={100}
                     direction="right"
-                    pauseOnHover={true}
+                    pauseOnHover={false}
                     gradient={false}
                     className="py-4"
                 >

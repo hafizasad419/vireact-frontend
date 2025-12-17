@@ -1,72 +1,87 @@
+import dannyGonzalez from './youtubers-images/danny_gonzalez.jpg';
+import jazza from './youtubers-images/jazza.jpg';
+import theOnyxFamily from './youtubers-images/the_onyx_amily.jpg';
+import topperGuild from './youtubers-images/topper_guild.jpg';
+import tobuscus from './youtubers-images/tobuscus.jpg';
+import mumboJumbo from './youtubers-images/mumbo_jumbo.jpg';
+import grian from './youtubers-images/grian.jpg';
+import ethosLab from './youtubers-images/ethos_lab.jpg';
+import goodTimesWithScar from './youtubers-images/good_times_with_scar.jpg';
+import cubfan135 from './youtubers-images/cubfan_135.jpg';
+import littleAnushkaVlogs from './youtubers-images/little_anushka_vlogs.jpg';
+import rajkumarVlogs from './youtubers-images/rajkumar_vlogs.jpg';
+import kirtiMehra from './youtubers-images/kirti_mehra.jpg';
+import twoFaces from './youtubers-images/two_faces.jpg';
+
 export const profileData = [
     {
-        name: "Floyd Miles Weather",
-        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-        followers: "9.7M"
+        name: "Danny Gonzalez",
+        image: dannyGonzalez,
+        followers: "7.12M"
     },
     {
-        name: "Bessie Cooper Aries",
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-        followers: "9.7M"
+        name: "Jazza",
+        image: jazza,
+        followers: "6.7M"
     },
     {
-        name: "Annette Black",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-        followers: "9.7M"
+        name: "The Onyx Family",
+        image: theOnyxFamily,
+        followers: "4.1M"
     },
     {
-        name: "Devon Lane",
-        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-        followers: "9.7M"
+        name: "Topper Guild",
+        image: topperGuild,
+        followers: "82M"
     },
     {
-        name: "Robert Fox",
-        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
-        followers: "9.7M"
+        name: "Tobuscus",
+        image: tobuscus,
+        followers: "6.1M"
     },
     {
-        name: "Cody Fisher",
-        image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face",
-        followers: "9.7M"
+        name: "Mumbo Jumbo",
+        image: mumboJumbo,
+        followers: "9.08M"
     },
     {
-        name: "Kristin Watson",
-        image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face",
-        followers: "9.7M"
+        name: "Grian",
+        image: grian,
+        followers: "8.24M"
     },
     {
-        name: "Floyd Miles",
-        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-        followers: "9.7M"
+        name: "EthosLab",
+        image: ethosLab,
+        followers: "2.44M"
     },
     {
-        name: "Bessie Cooper",
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-        followers: "9.7M"
+        name: "GoodTimesWithScar",
+        image: goodTimesWithScar,
+        followers: "2.02M"
     },
     {
-        name: "Annette White",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-        followers: "9.7M"
+        name: "Cubfan135",
+        image: cubfan135,
+        followers: "823K"
     },
     {
-        name: "Devon Uno Lane",
-        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-        followers: "9.7M"
+        name: "Little Anushka Vlogs",
+        image: littleAnushkaVlogs,
+        followers: "722K"
     },
     {
-        name: "Robert Zero Fox",
-        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
-        followers: "9.7M"
+        name: "Rajkumar Vlogs",
+        image: rajkumarVlogs,
+        followers: "639K"
     },
     {
-        name: "Cody Trinity Fisher",
-        image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face",
-        followers: "9.7M"
+        name: "Kirti Mehra",
+        image: kirtiMehra,
+        followers: "684K"
     },
     {
-        name: "Kristin Two Watson",
-        image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face",
-        followers: "9.7M"
+        name: "Two Faces",
+        image: twoFaces,
+        followers: "980K"
     },
 ];

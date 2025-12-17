@@ -1,14 +1,15 @@
 interface LogoCardProps {
-    text: string;
-    style: string;
+    image: string;
 }
 
-function LogoCard({ text, style }: LogoCardProps) {
+function LogoCard({ image }: LogoCardProps) {
     return (
         <div className="mx-8 flex items-center">
-            <span className={`text-lg font-medium text-gray-300 ${style}`}>
-                {text}
-            </span>
+            <img
+                src={image}
+                alt="Logo"
+                className="w-10 h-10 object-cover rounded-full opacity-70 grayscale hover:opacity-100 hover:grayscale-0 transition-all"
+            />
         </div>
     );
 }

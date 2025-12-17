@@ -35,28 +35,43 @@ function CustomMarquee({
     style = {},
 }: MarqueeProps) {
     return (
-        <div 
-            className={className}
-            style={{ 
-                width, 
-                height,
-                ...style 
-            }}
-        >
-            <Marquee
-                speed={speed}
-                direction={direction}
-                pauseOnHover={pauseOnHover}
-                gradient={gradient}
-                gradientColor={gradientColor}
-                gradientWidth={gradientWidth}
-                loop={loop}
-                delay={delay}
-                play={play}
+        <>
+            <style>{`
+                .marquee-container * {
+                    scrollbar-width: none;
+                    -ms-overflow-style: none;
+                }
+                .marquee-container *::-webkit-scrollbar {
+                    display: none;
+                }
+            `}</style>
+            <div 
+                className={`marquee-container ${className}`}
+                style={{ 
+                    width, 
+                    height,
+                    overflow: 'hidden',
+                    ...style 
+                }}
             >
-                {children}
-            </Marquee>
-        </div>
+                <Marquee
+                    speed={speed}
+                    direction={direction}
+                    pauseOnHover={pauseOnHover}
+                    gradient={gradient}
+                    gradientColor={gradientColor}
+                    gradientWidth={gradientWidth}
+                    loop={loop}
+                    delay={delay}
+                    play={play}
+                    style={{
+                        overflow: 'hidden',
+                    }}
+                >
+                    {children}
+                </Marquee>
+            </div>
+        </>
     );
 }
 

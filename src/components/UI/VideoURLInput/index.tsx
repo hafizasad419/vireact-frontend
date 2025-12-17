@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { FaLink } from "react-icons/fa";
 import { platformOptions } from "@/components/UI/VideoURLInput/platform-options-items";
 import { useTypingEffect } from "@/hooks/useTypingEffect";
@@ -9,7 +10,16 @@ interface VideoURLInputProps {
     className?: string;
 }
 
-function VideoURLInput({ value = '', onChange, onError, className = '' }: VideoURLInputProps) {
+function VideoURLInput({ value: propValue, onChange, onError, className = '' }: VideoURLInputProps) {
+    const [internalValue, setInternalValue] = useState(propValue || '');
+    
+    // Sync internal state with prop value when it changes
+    useEffect(() => {
+        if (propValue !== undefined) {
+            setInternalValue(propValue);
+        }
+    }, [propValue]);
+
     const typingText = useTypingEffect({
         options: platformOptions,
         typingSpeed: 100,
@@ -20,8 +30,18 @@ function VideoURLInput({ value = '', onChange, onError, className = '' }: VideoU
 
     const placeholderText = `Drop a ${typingText}`;
 
+    // Use prop value if provided, otherwise use internal state
+    const inputValue = propValue !== undefined ? propValue : internalValue;
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value;
+        
+        // Update internal state if not controlled by prop
+        if (propValue === undefined) {
+            setInternalValue(newValue);
+        }
+        
+        // Call onChange callback
         onChange?.(newValue);
         
         // Clear any previous errors when user starts typing
@@ -40,10 +60,10 @@ function VideoURLInput({ value = '', onChange, onError, className = '' }: VideoU
             {/* Input field */}
             <input
                 type="text"
-                value={value}
+                value={inputValue}
                 onChange={handleChange}
                 placeholder={placeholderText}
-                className="w-full bg-dark-input-bg text-white placeholder-gray-400 rounded-full py-4 pl-12 pr-40 border-0 outline-none focus:ring-2 focus:ring-gray-600"
+                className="w-full sm:min-w-sm bg-dark-input-bg text-white placeholder-gray-400 rounded-full py-4 pl-12 pr-4 border-0 outline-none focus:ring-2 focus:ring-gray-600"
             />
         </div>
     )

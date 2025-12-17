@@ -11,8 +11,7 @@ interface Profile {
 }
 
 interface Logo {
-    text: string;
-    style: string;
+    image: string;
 }
 
 function CreatorsAndBusinesses() {
@@ -59,8 +58,7 @@ function CreatorsAndBusinesses() {
                     {logoData.map((logo, index) => (
                         <LogoCard
                             key={index}
-                            text={logo.text}
-                            style={logo.style}
+                            image={logo.image}
                         />
                     ))}
                 </CustomMarquee>

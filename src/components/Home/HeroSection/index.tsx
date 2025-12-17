@@ -35,7 +35,6 @@ function HeroSection() {
 
                 <UploadCTA
                     uploadButtonText="Upload Here"
-                    onUploadClick={() => { }}
                 />
 
                 {/* CTA Buttons */}
