@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import { useAuth } from '@/redux/hooks/use-auth';
+import { useUser } from '@/redux/hooks/use-user';
 import { useNavigate } from 'react-router-dom';
 import Axios from '@/api';
 import toast from 'react-hot-toast';
 
 function GoogleCallback() {
   const { login, updateAuthData } = useAuth();
+  const { setUserData } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,18 +20,32 @@ function GoogleCallback() {
         try {
           const decodedData = JSON.parse(decodeURIComponent(userData));
           
-          // Update auth state
+          // Map user data to match user slice structure (same as custom login)
+          const mappedUser = {
+            id: decodedData.user._id || decodedData.user.id,
+            name: decodedData.user.name,
+            email: decodedData.user.email,
+            avatar: decodedData.user.avatar,
+            preferences: decodedData.user.preferences || {}
+          };
+          
+          // Update Redux store (matching custom login flow)
           login(true);
           updateAuthData({
             token: decodedData.accessToken,
+            refreshToken: decodedData.refreshToken || '',
             role: decodedData.user.role,
-            user: decodedData.user,
+            user: mappedUser,
           });
+          setUserData(mappedUser);
 
-          // Store in localStorage for persistence
-          localStorage.setItem('auth_token', decodedData.accessToken);
+          // Store in localStorage for persistence (matching custom login flow)
+          localStorage.setItem('accessToken', decodedData.accessToken);
+          if (decodedData.refreshToken) {
+            localStorage.setItem('refreshToken', decodedData.refreshToken);
+          }
           localStorage.setItem('auth_role', decodedData.user.role);
-          localStorage.setItem('auth_user', JSON.stringify(decodedData.user));
+          localStorage.setItem('auth_user', JSON.stringify(mappedUser));
           localStorage.setItem('auth_is_authenticated', 'true');
 
           toast.success('Login successful!');
@@ -51,18 +67,32 @@ function GoogleCallback() {
           const response = await Axios.get('/auth/me');
           
           if (response.data && response.data.user) {
-            // User is authenticated, update state
+            // Map user data to match user slice structure (same as custom login)
+            const mappedUser = {
+              id: response.data.user._id || response.data.user.id,
+              name: response.data.user.name,
+              email: response.data.user.email,
+              avatar: response.data.user.avatar,
+              preferences: response.data.user.preferences || {}
+            };
+            
+            // User is authenticated, update Redux store (matching custom login flow)
             login(true);
             updateAuthData({
               token: response.data.accessToken || '',
+              refreshToken: response.data.refreshToken || '',
               role: response.data.user.role,
-              user: response.data.user,
+              user: mappedUser,
             });
+            setUserData(mappedUser);
 
-            // Store in localStorage for persistence
-            localStorage.setItem('auth_token', response.data.accessToken || '');
+            // Store in localStorage for persistence (matching custom login flow)
+            localStorage.setItem('accessToken', response.data.accessToken || '');
+            if (response.data.refreshToken) {
+              localStorage.setItem('refreshToken', response.data.refreshToken);
+            }
             localStorage.setItem('auth_role', response.data.user.role);
-            localStorage.setItem('auth_user', JSON.stringify(response.data.user));
+            localStorage.setItem('auth_user', JSON.stringify(mappedUser));
             localStorage.setItem('auth_is_authenticated', 'true');
 
             toast.success('Login successful!');
@@ -78,7 +108,7 @@ function GoogleCallback() {
     };
 
     handleGoogleCallback();
-  }, [login, updateAuthData, navigate]);
+  }, [login, updateAuthData, setUserData, navigate]);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
