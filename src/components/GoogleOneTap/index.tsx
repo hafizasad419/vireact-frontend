@@ -107,7 +107,7 @@ function GoogleOneTap({
     <div className="w-full relative">
       <button 
         onClick={handleGoogleAuth}
-        disabled={true}
+        // disabled={true}
         className="w-full flex items-center justify-center btn-secondary !font-normal"
       >
         <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
