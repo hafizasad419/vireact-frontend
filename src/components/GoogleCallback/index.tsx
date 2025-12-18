@@ -3,7 +3,7 @@ import { useAuth } from '@/redux/hooks/use-auth';
 import { useUser } from '@/redux/hooks/use-user';
 import { useNavigate } from 'react-router-dom';
 import Axios from '@/api';
-import toast from 'react-hot-toast';
+import { ErrorNotification, SuccessNotification } from '@/utils/toast';
 
 function GoogleCallback() {
   const { login, updateAuthData } = useAuth();
@@ -19,7 +19,7 @@ function GoogleCallback() {
       if (authStatus === 'success' && userData) {
         try {
           const decodedData = JSON.parse(decodeURIComponent(userData));
-          
+
           // Map user data to match user slice structure (same as custom login)
           const mappedUser = {
             id: decodedData.user._id || decodedData.user.id,
@@ -28,7 +28,7 @@ function GoogleCallback() {
             avatar: decodedData.user.avatar,
             preferences: decodedData.user.preferences || {}
           };
-          
+
           // Update Redux store (matching custom login flow)
           login(true);
           updateAuthData({
@@ -48,24 +48,24 @@ function GoogleCallback() {
           localStorage.setItem('auth_user', JSON.stringify(mappedUser));
           localStorage.setItem('auth_is_authenticated', 'true');
 
-          toast.success('Login successful!');
-          
+          SuccessNotification('Login successful!');
+
           // Redirect to dashboard
           navigate('/dashboard');
         } catch (error) {
           console.error('Error parsing user data:', error);
-          toast.error('Login failed. Please try again.');
+          ErrorNotification('Login failed. Please try again.');
           navigate('/login');
         }
       } else if (authStatus === 'failure') {
-        toast.error('Login failed. Please try again.');
+        ErrorNotification('Login failed. Please try again.');
         navigate('/login');
       } else {
         // Check if we have a session cookie from the backend
         try {
           // Make a request to check if user is authenticated
           const response = await Axios.get('/auth/me');
-          
+
           if (response.data && response.data.user) {
             // Map user data to match user slice structure (same as custom login)
             const mappedUser = {
@@ -75,7 +75,7 @@ function GoogleCallback() {
               avatar: response.data.user.avatar,
               preferences: response.data.user.preferences || {}
             };
-            
+
             // User is authenticated, update Redux store (matching custom login flow)
             login(true);
             updateAuthData({
@@ -95,7 +95,7 @@ function GoogleCallback() {
             localStorage.setItem('auth_user', JSON.stringify(mappedUser));
             localStorage.setItem('auth_is_authenticated', 'true');
 
-            toast.success('Login successful!');
+            SuccessNotification('Login successful!');
             navigate('/dashboard');
           } else {
             navigate('/login');

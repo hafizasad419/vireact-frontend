@@ -1,3 +1,5 @@
+import FeaturesList from '@/components/UI/FeaturesList';
+
 interface DashboardHeaderProps {
     name: string;
     selectedFeatureIds: string[];
@@ -30,6 +32,10 @@ function DashboardHeader({ name, selectedFeatureIds }: DashboardHeaderProps) {
                     </span>
                 </div>
             </div>
+
+
+
+            {/* <FeaturesList /> */}
         </>
 
 
