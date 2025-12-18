@@ -9,6 +9,10 @@ import {
     SiMeta
 } from 'react-icons/si';
 import { FaHeart, FaBroadcastTower, FaPepperHot, FaSearch, FaWindows } from 'react-icons/fa';
+import jazza from '../FeaturesPage/CreatorsAndBusinesses/youtubers-images/jazza.jpg';
+import grian from '../FeaturesPage/CreatorsAndBusinesses/youtubers-images/grian.jpg';
+import cubfan135 from '../FeaturesPage/CreatorsAndBusinesses/youtubers-images/cubfan_135.jpg';
+import mumboJumbo from '../FeaturesPage/CreatorsAndBusinesses/youtubers-images/mumbo_jumbo.jpg';
 
 interface CreatorProfile {
     id: string;
@@ -34,36 +38,36 @@ interface SocialProofProps {
 const SocialProof: React.FC<SocialProofProps> = ({ className = '' }) => {
     const creatorProfiles: CreatorProfile[] = [
         {
-            id: 'valuetainment',
-            name: 'Valuetainment',
-            followers: '5.3M',
-            avatar: 'V',
+            id: 'jazza',
+            name: 'Jazza',
+            followers: '6.7M',
+            avatar: jazza,
             platform: 'youtube',
             avatarColor: 'bg-red-600'
         },
         {
-            id: 'grant-cardone',
-            name: 'Grant Cardone',
-            followers: '4.5M',
-            avatar: 'G',
-            platform: 'instagram',
-            avatarColor: 'bg-gray-600'
+            id: 'grian',
+            name: 'Grian',
+            followers: '8.24M',
+            avatar: grian,
+            platform: 'youtube',
+            avatarColor: 'bg-red-600'
         },
         {
-            id: 'jon-youshaei',
-            name: 'Jon Youshaei',
-            followers: '385K',
-            avatar: 'J',
+            id: 'cubfan135',
+            name: 'Cubfan135',
+            followers: '823K',
+            avatar: cubfan135,
             platform: 'youtube',
-            avatarColor: 'bg-gray-600'
+            avatarColor: 'bg-red-600'
         },
         {
-            id: 'jenny-hoyos',
-            name: 'Jenny Hoyos',
-            followers: '4M',
-            avatar: 'J',
+            id: 'mumbo-jumbo',
+            name: 'Mumbo Jumbo',
+            followers: '9.08M',
+            avatar: mumboJumbo,
             platform: 'youtube',
-            avatarColor: 'bg-gray-600'
+            avatarColor: 'bg-red-600'
         }
     ];
 
@@ -200,11 +204,15 @@ const SocialProof: React.FC<SocialProofProps> = ({ className = '' }) => {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
                     {creatorProfiles.map((creator) => (
                         <div key={creator.id} className="text-center">
-                            <div className={`w-16 h-16 ${creator.avatarColor} rounded-full flex items-center justify-center mb-3 mx-auto relative`}>
-                                <span className="text-white font-bold text-xl">{creator.avatar}</span>
-                                <div className={`absolute -bottom-1 -right-1 w-5 h-5 ${getPlatformBadgeColor(creator.platform)} rounded-full flex items-center justify-center`}>
+                            <div className={`w-16 h-16 ${creator.avatarColor} rounded-full flex items-center justify-center mb-3 mx-auto relative overflow-hidden`}>
+                                <img 
+                                    src={creator.avatar} 
+                                    alt={creator.name}
+                                    className="w-full h-full object-cover"
+                                />
+                                {/* <div className={`absolute -bottom-1 -right-1 w-5 h-5 ${getPlatformBadgeColor(creator.platform)} rounded-full flex items-center justify-center`}>
                                     {getPlatformIcon(creator.platform)}
-                                </div>
+                                </div> */}
                             </div>
                             <div className="text-white font-semibold">{creator.name}</div>
                             <div className="text-gray-400 text-sm">{creator.followers}</div>
