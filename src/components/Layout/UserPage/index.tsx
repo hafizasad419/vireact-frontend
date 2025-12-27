@@ -26,7 +26,7 @@ function UserPage({
         showHeader && <UserHeader />
       }
       {/* Main Content */}
-      <main className={`relative ${mainClassName}`}>
+      <main className={`relative sm:ml-64 ${mainClassName}`}>
         {children}
       </main>
       {

@@ -193,6 +193,13 @@ function Chat() {
         };
     }, []);
 
+    // Format chatbot messages: remove double asterisks and replace em dashes
+    const formatChatbotMessage = useCallback((text: string): string => {
+        return text
+            .replace(/\*\*/g, '')
+            .replace(/—/g, ', ');
+    }, []);
+
     if (isLoading || !video || isLoadingMessages) {
         return (
             <UserPage>
@@ -266,7 +273,9 @@ function Chat() {
                                         }`}
                                     >
                                         <p className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap break-words">
-                                            {message.text}
+
+                                            {/* {message?.text} */}
+                                            {message.isUser ? message.text : formatChatbotMessage(message.text)}
                                         </p>
                                     </div>
                                 </div>
