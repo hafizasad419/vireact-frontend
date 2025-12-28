@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import UserPage from '@/components/Layout/UserPage';
 import { getUserVideos, markAnalysisViewed, type Video } from '@/api/video';
 import { getChatMessages, sendChatMessage, type Message } from '@/api/chat';
 import { useUser } from '@/redux/hooks/use-user';
@@ -202,19 +201,13 @@ function Chat() {
 
     if (isLoading || !video || isLoadingMessages) {
         return (
-            <UserPage>
                 <div className="flex items-center justify-center min-h-screen">
                     <FaSpinner className="w-8 h-8 text-white animate-spin" />
                 </div>
-            </UserPage>
         );
     }
 
     return (
-        <UserPage
-            showHeader={false}
-            showBottomNav={false}
-            mainClassName="!pb-0">
             <div className="flex flex-col h-screen">
                 {/* Video Thumbnail Section - Sticky at Top */}
                 <div className="sticky top-0 z-10 bg-black border-b border-gray-800 flex-shrink-0">
@@ -342,7 +335,6 @@ function Chat() {
                     </div>
                 </div>
             </div>
-        </UserPage>
     );
 }
 

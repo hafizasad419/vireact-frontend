@@ -388,7 +388,8 @@ function UploadPage({ selectedFeatureIds, onBack, onAnalyze }: UploadPageProps) 
                                     <div>
                                         <span className="text-gray-400">Filename:</span>
                                         <span className="text-white ml-2 truncate">
-                                            {selectedFile.name}
+                                            {/* support to roundoff for long file names */}
+                                            {selectedFile?.name.length > 20 ? selectedFile?.name.slice(0, 20) + '...' : selectedFile?.name}
                                         </span>
                                     </div>
                                 </div>
