@@ -16,15 +16,17 @@ function VideoUploadInput({ onFileSelect, onError, className = '' }: VideoUpload
 
     const validateFile = useCallback(async (file: File): Promise<boolean> => {
         // Check file size
+        const maxSizeMB = UPLOAD_VALIDATION.VIDEO.MAX_SIZE / (1024 * 1024);
+        const fileSizeMB = file.size / (1024 * 1024);
         if (file.size > UPLOAD_VALIDATION.VIDEO.MAX_SIZE) {
-            onError(`File size must be less than ${UPLOAD_VALIDATION.VIDEO.MAX_SIZE / (1024 * 1024)}MB`);
+            onError(`File size must be less than ${maxSizeMB}MB. Your file is ${fileSizeMB.toFixed(2)}MB.`);
             return false;
         }
 
         // Check file format
         const fileExtension = file.name.split('.').pop()?.toLowerCase();
         if (!fileExtension || !UPLOAD_VALIDATION.VIDEO.ALLOWED_FORMATS.includes(fileExtension)) {
-            onError(`Only ${UPLOAD_VALIDATION.VIDEO.ALLOWED_FORMATS.join(', ')} formats are allowed`);
+            onError('Invalid file format. Please upload MP4 files only.');
             return false;
         }
 
@@ -47,7 +49,7 @@ function VideoUploadInput({ onFileSelect, onError, className = '' }: VideoUpload
             };
 
             video.onerror = () => {
-                onError('Invalid video file');
+                onError('Invalid video file. Please upload a valid MP4 file.');
                 resolve(false);
             };
 
@@ -119,7 +121,7 @@ function VideoUploadInput({ onFileSelect, onError, className = '' }: VideoUpload
             <input
                 ref={fileInputRef}
                 type="file"
-                accept={UPLOAD_VALIDATION.VIDEO.ALLOWED_FORMATS.map(format => `.${format}`).join(',')}
+                accept="video/mp4"
                 onChange={handleFileInputChange}
                 className="hidden"
             />
@@ -177,7 +179,7 @@ function VideoUploadInput({ onFileSelect, onError, className = '' }: VideoUpload
                             <FaUpload className="w-4 h-4" />
                             <span>Max {UPLOAD_VALIDATION.VIDEO.MAX_SIZE / (1024 * 1024)}MB</span>
                             <span>•</span>
-                            <span>{UPLOAD_VALIDATION.VIDEO.ALLOWED_FORMATS.join(', ')}</span>
+                            <span>MP4 only</span>
                         </div>
                         <div className="mt-2 text-gray-500 text-xs">
                             Duration: {UPLOAD_VALIDATION.VIDEO.MIN_DURATION}s - {UPLOAD_VALIDATION.VIDEO.MAX_DURATION}s
