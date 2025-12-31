@@ -123,7 +123,6 @@ export const uploadVideoFileToTwelveLabs = async (
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
-            timeout: 180000, // 180 seconds (3 minutes) timeout for file uploads
             onUploadProgress: (progressEvent) => {
                 if (progressEvent.total && onProgress) {
                     const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);

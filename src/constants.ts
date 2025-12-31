@@ -39,8 +39,8 @@ export const TIME_REGEX = /^\d{2}:\d{2}$/
 // Upload validation constants
 export const UPLOAD_VALIDATION = {
     VIDEO: {
-        MAX_SIZE: 15 * 1024 * 1024, // 15MB in bytes
-        ALLOWED_FORMATS: ['mp4'],
+        MAX_SIZE: 50 * 1024 * 1024, // 50MB in bytes
+        ALLOWED_FORMATS: ['mp4', 'mov', 'avi', 'mkv', 'webm'],
         MAX_DURATION: 60, // 60 seconds
         MIN_DURATION: 5, // 5 seconds
     },

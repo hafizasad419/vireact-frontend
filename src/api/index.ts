@@ -9,8 +9,7 @@ let headers = {
 const Axios = axios.create({
     baseURL: `${VITE_BACKEND_URL}/api/v1`,
     headers: headers,
-    withCredentials: true,
-    timeout: 120000 // 120 seconds timeout for all requests
+    withCredentials: true
 });
 
 export default Axios;
