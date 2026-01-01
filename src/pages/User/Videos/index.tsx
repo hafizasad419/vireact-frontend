@@ -14,12 +14,44 @@ function Videos() {
     const [deletingVideoId, setDeletingVideoId] = useState<string | null>(null);
     const [isRefreshing, setIsRefreshing] = useState(false);
 
+    const deleteFailedVideos = useCallback(async (failedVideoIds: string[]) => {
+        if (failedVideoIds.length === 0) return;
+
+        let successCount = 0;
+        for (const videoId of failedVideoIds) {
+            try {
+                await deleteVideo(videoId);
+                setVideos((prev) => prev.filter((video) => video._id !== videoId));
+                successCount++;
+            } catch (err: any) {
+                console.error(`Failed to delete video ${videoId}:`, err);
+                // Continue with next video
+            }
+        }
+
+        if (successCount > 0) {
+            SuccessNotification(`${successCount} failed video(s) were automatically removed`);
+        }
+    }, []);
+
     const fetchVideos = useCallback(async () => {
         setIsLoading(true);
         setError(null);
         try {
             const videoList = await getUserVideos();
-            setVideos(videoList);
+            
+            // Filter out failed videos from display immediately
+            const failedVideos = videoList.filter((video) => video.uploadStatus === UPLOAD_STATUS.FAILED);
+            const validVideos = videoList.filter((video) => video.uploadStatus !== UPLOAD_STATUS.FAILED);
+            
+            setVideos(validVideos);
+            
+            // Delete failed videos in the background
+            if (failedVideos.length > 0) {
+                const failedVideoIds = failedVideos.map((video) => video._id);
+                // Don't await - let it run in background
+                deleteFailedVideos(failedVideoIds);
+            }
         } catch (err: any) {
             const errorMessage = err?.response?.data?.message || err?.message || 'Failed to fetch videos';
             setError(errorMessage);
@@ -27,7 +59,7 @@ function Videos() {
         } finally {
             setIsLoading(false);
         }
-    }, []);
+    }, [deleteFailedVideos]);
 
     useEffect(() => {
         fetchVideos();
